@@ -1,5 +1,7 @@
 package proyectoedd2;
 
+import java.util.ArrayList;
+
 public class Main extends javax.swing.JFrame {
 
     public Main() {
@@ -24,11 +26,11 @@ public class Main extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         tf_nombrecampo = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jSpinner1 = new javax.swing.JSpinner();
+        cb_tipo = new javax.swing.JComboBox<>();
+        sp_size = new javax.swing.JSpinner();
         rb_yes = new javax.swing.JRadioButton();
         rb_no = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        crearC = new javax.swing.JButton();
         jd_modificarC = new javax.swing.JDialog();
         jd_borrarC = new javax.swing.JDialog();
         jLabel8 = new javax.swing.JLabel();
@@ -104,7 +106,7 @@ public class Main extends javax.swing.JFrame {
 
         jLabel7.setText("¿Es llave primaria?");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "int", "String", "double", "char", " " }));
 
         grupo.add(rb_yes);
         rb_yes.setText("Si");
@@ -112,7 +114,12 @@ public class Main extends javax.swing.JFrame {
         grupo.add(rb_no);
         rb_no.setText("No");
 
-        jButton1.setText("Crear");
+        crearC.setText("Crear");
+        crearC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                crearCMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jd_crearCLayout = new javax.swing.GroupLayout(jd_crearC.getContentPane());
         jd_crearC.getContentPane().setLayout(jd_crearCLayout);
@@ -126,26 +133,25 @@ public class Main extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(jd_crearCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jd_crearCLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jd_crearCLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tf_nombrecampo, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jd_crearCLayout.createSequentialGroup()
-                        .addGroup(jd_crearCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jd_crearCLayout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinner1))
-                            .addComponent(jLabel7))
+                        .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rb_yes)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jd_crearCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(rb_no))))
+                            .addComponent(crearC)
+                            .addComponent(rb_no)))
+                    .addGroup(jd_crearCLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_crearCLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sp_size, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         jd_crearCLayout.setVerticalGroup(
@@ -160,11 +166,11 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jd_crearCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jd_crearCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sp_size, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jd_crearCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
@@ -172,7 +178,7 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(rb_yes)
                         .addComponent(rb_no)))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(crearC)
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -367,6 +373,7 @@ public class Main extends javax.swing.JFrame {
             jd_crearC.pack();
             jd_crearC.setLocationRelativeTo(this);
             jd_crearC.setVisible(true);
+            
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jmi_crearCampoActionPerformed
@@ -439,6 +446,24 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jmi_borrarCamposActionPerformed
 
+    private void crearCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crearCMouseClicked
+        // TODO add your handling code here:
+        try {
+            /*int tipo;
+            if (cb_tipo.getSelectedIndex()==0) {
+                int
+            }*/
+            boolean key;
+            if (rb_yes.isSelected()) {
+                key=true;
+            }else{
+                key=false;
+            }
+            campos.add(new Campo(tf_nombrecampo.getText(), cb_tipo.getSelectedIndex(), (int)sp_size.getValue(), key));
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_crearCMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -475,10 +500,10 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cb_tipo;
+    private javax.swing.JButton crearC;
     private javax.swing.ButtonGroup grupo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -493,7 +518,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton jb_abrirAr;
     private javax.swing.JButton jb_exit;
@@ -513,6 +537,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTable jt_campos;
     private javax.swing.JRadioButton rb_no;
     private javax.swing.JRadioButton rb_yes;
+    private javax.swing.JSpinner sp_size;
     private javax.swing.JTextField tf_nombrecampo;
     // End of variables declaration//GEN-END:variables
+    ArrayList<Campo> campos=new ArrayList();
 }
