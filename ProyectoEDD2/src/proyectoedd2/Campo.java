@@ -1,20 +1,5 @@
-<<<<<<< HEAD
 package proyectoedd2;
 
-public class Campo {
-    
-=======
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package proyectoedd2;
-
-/**
- *
- * @author josep
- */
 public class Campo {
 
     private String NombreCampo;
@@ -69,5 +54,4 @@ public class Campo {
         return "Campo{" + "NombreCampo=" + NombreCampo + ", tipo=" + tipo + ", longitud=" + longitud + ", llave=" + llave + '}';
     }
 
->>>>>>> 3a233748f75ad3c75e57fd9bf2ab8785aa38f1a0
 }

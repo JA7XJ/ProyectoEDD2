@@ -368,11 +368,7 @@ public class Main extends javax.swing.JFrame {
             jd_crearC.pack();
             jd_crearC.setLocationRelativeTo(this);
             jd_crearC.setVisible(true);
-<<<<<<< HEAD
-            
-=======
 
->>>>>>> 3a233748f75ad3c75e57fd9bf2ab8785aa38f1a0
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jmi_crearCampoActionPerformed
@@ -395,7 +391,6 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb_abrirArMouseClicked
 
-<<<<<<< HEAD
     private void jb_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_exitMouseClicked
         // TODO add your handling code here:
         try {
@@ -404,8 +399,6 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb_exitMouseClicked
 
-=======
->>>>>>> 3a233748f75ad3c75e57fd9bf2ab8785aa38f1a0
     private void jmi_cerrarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_cerrarArchivoActionPerformed
         // TODO add your handling code here:
         try {
