@@ -1,7 +1,11 @@
 package proyectoedd2;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 public class Main extends javax.swing.JFrame {
@@ -374,14 +378,38 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jmi_crearCampoActionPerformed
 
     private void jb_nuevoArMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_nuevoArMouseClicked
-        // TODO add your handling code here:
         try {
             jm_archivo.setEnabled(true);
             jm_campos.setEnabled(true);
+            //aqui crear archivo
+            JFileChooser guardar = new JFileChooser();
+            FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivo texto", "txt");
+            guardar.setFileFilter(filtro);
+            guardar.showSaveDialog(null);
+            guardar.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+            
+            File archivo = guardar.getSelectedFile();
+            File ruta = guardar.getCurrentDirectory();
+            
+            String nombre_archivo = guardar.getSelectedFile().getName();
+            
+            
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jb_nuevoArMouseClicked
 
+    void DateiSpeichern(String info, String nombre_archivo, File ruta){
+        File archivo = new File(nombre_archivo);
+        FileWriter fw;
+        try {
+            fw = new FileWriter(archivo, true);
+            fw.write(info);
+            fw.close();
+        } catch (Exception e) {
+        }
+        
+    }
+    
     private void jb_abrirArMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_abrirArMouseClicked
         // TODO add your handling code here:
         try {
