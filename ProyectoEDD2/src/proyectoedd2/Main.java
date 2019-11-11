@@ -38,12 +38,27 @@ public class Main extends javax.swing.JFrame {
         rb_no = new javax.swing.JRadioButton();
         crearC = new javax.swing.JButton();
         jd_modificarC = new javax.swing.JDialog();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jt_modificarC = new javax.swing.JTable();
+        rb_modi = new javax.swing.JButton();
         jd_borrarC = new javax.swing.JDialog();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jt_borrarC = new javax.swing.JTable();
         jb_borrarC = new javax.swing.JButton();
         grupo = new javax.swing.ButtonGroup();
+        jd_modi = new javax.swing.JDialog();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        tf_nombrecampo1 = new javax.swing.JTextField();
+        cb_tipo1 = new javax.swing.JComboBox<>();
+        sp_size1 = new javax.swing.JSpinner();
+        rb_yes1 = new javax.swing.JRadioButton();
+        rb_no1 = new javax.swing.JRadioButton();
+        rb_modificarF = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jb_nuevoAr = new javax.swing.JButton();
         jb_abrirAr = new javax.swing.JButton();
@@ -187,15 +202,54 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel9.setText("Seleccione archivo a modificar");
+
+        jt_modificarC.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jt_modificarC.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane3.setViewportView(jt_modificarC);
+
+        rb_modi.setText("Modificar");
+        rb_modi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rb_modiMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jd_modificarCLayout = new javax.swing.GroupLayout(jd_modificarC.getContentPane());
         jd_modificarC.getContentPane().setLayout(jd_modificarCLayout);
         jd_modificarCLayout.setHorizontalGroup(
             jd_modificarCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jd_modificarCLayout.createSequentialGroup()
+                .addGroup(jd_modificarCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_modificarCLayout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(jLabel9))
+                    .addGroup(jd_modificarCLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_modificarCLayout.createSequentialGroup()
+                        .addGap(202, 202, 202)
+                        .addComponent(rb_modi, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         jd_modificarCLayout.setVerticalGroup(
             jd_modificarCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jd_modificarCLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(rb_modi)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -248,6 +302,84 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jb_borrarC)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel10.setText("Longitud");
+
+        jLabel11.setText("¿Es llave primaria?");
+
+        cb_tipo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "int", "String", "double", "char", " " }));
+
+        grupo.add(rb_yes1);
+        rb_yes1.setText("Si");
+
+        grupo.add(rb_no1);
+        rb_no1.setText("No");
+
+        rb_modificarF.setText("Modificar");
+        rb_modificarF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rb_modificarFMouseClicked(evt);
+            }
+        });
+
+        jLabel12.setText("Nombre del campo");
+
+        jLabel13.setText("Tipo");
+
+        javax.swing.GroupLayout jd_modiLayout = new javax.swing.GroupLayout(jd_modi.getContentPane());
+        jd_modi.getContentPane().setLayout(jd_modiLayout);
+        jd_modiLayout.setHorizontalGroup(
+            jd_modiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_modiLayout.createSequentialGroup()
+                .addContainerGap(36, Short.MAX_VALUE)
+                .addGroup(jd_modiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_modiLayout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tf_nombrecampo1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_modiLayout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rb_yes1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jd_modiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rb_modificarF)
+                            .addComponent(rb_no1)))
+                    .addGroup(jd_modiLayout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cb_tipo1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_modiLayout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sp_size1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(25, 25, 25))
+        );
+        jd_modiLayout.setVerticalGroup(
+            jd_modiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_modiLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jd_modiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(tf_nombrecampo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jd_modiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(cb_tipo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jd_modiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(sp_size1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jd_modiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
+                    .addGroup(jd_modiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(rb_yes1)
+                        .addComponent(rb_no1)))
+                .addGap(18, 18, 18)
+                .addComponent(rb_modificarF)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -387,29 +519,29 @@ public class Main extends javax.swing.JFrame {
             guardar.setFileFilter(filtro);
             guardar.showSaveDialog(null);
             guardar.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-            
+
             File archivo = guardar.getSelectedFile();
             File ruta = guardar.getCurrentDirectory();
-            
+
             String nombre_archivo = guardar.getSelectedFile().getName();
-            
-            
+            DateiSpeichern(ruta);
+
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jb_nuevoArMouseClicked
 
-    void DateiSpeichern(String info, String nombre_archivo, File ruta){
-        File archivo = new File(nombre_archivo);
+    void DateiSpeichern(File ruta) {
+        File archivo = new File(ruta.getPath());
         FileWriter fw;
         try {
             fw = new FileWriter(archivo, true);
-            fw.write(info);
+            //fw.write(info);
             fw.close();
         } catch (Exception e) {
         }
-        
+
     }
-    
+
     private void jb_abrirArMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_abrirArMouseClicked
         // TODO add your handling code here:
         try {
@@ -422,7 +554,7 @@ public class Main extends javax.swing.JFrame {
     private void jb_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_exitMouseClicked
         // TODO add your handling code here:
         try {
-           System.exit(0);
+            System.exit(0);
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jb_exitMouseClicked
@@ -451,18 +583,18 @@ public class Main extends javax.swing.JFrame {
             String[] c = new String[4];
             for (int i = 0; i < size; i++) {
                 //String tipo = Integer.toString(campos.get(i).getTipo());
-                String tipo="";
-                if (campos.get(i).getTipo()==0) {
-                    tipo="int";
+                String tipo = "";
+                if (campos.get(i).getTipo() == 0) {
+                    tipo = "int";
                 }
-                if (campos.get(i).getTipo()==1) {
-                    tipo="String";
+                if (campos.get(i).getTipo() == 1) {
+                    tipo = "String";
                 }
-                if (campos.get(i).getTipo()==2) {
-                    tipo="double";
+                if (campos.get(i).getTipo() == 2) {
+                    tipo = "double";
                 }
-                if (campos.get(i).getTipo()==3) {
-                    tipo="char";
+                if (campos.get(i).getTipo() == 3) {
+                    tipo = "char";
                 }
                 c[0] = campos.get(i).getNombreCampo();
                 c[1] = tipo;
@@ -486,6 +618,42 @@ public class Main extends javax.swing.JFrame {
     private void jmi_modificarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_modificarCampoActionPerformed
         // TODO add your handling code here:
         try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            int size = campos.size();
+            //for (int i = 0; i < size; i++) {
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Tipo");
+            modelo.addColumn("longitud");
+            modelo.addColumn("Llave primaria");
+            //}
+            jt_modificarC.setModel(modelo);
+            String[] c = new String[4];
+            for (int i = 0; i < size; i++) {
+                //String tipo = Integer.toString(campos.get(i).getTipo());
+                String tipo = "";
+                if (campos.get(i).getTipo() == 0) {
+                    tipo = "int";
+                }
+                if (campos.get(i).getTipo() == 1) {
+                    tipo = "String";
+                }
+                if (campos.get(i).getTipo() == 2) {
+                    tipo = "double";
+                }
+                if (campos.get(i).getTipo() == 3) {
+                    tipo = "char";
+                }
+                c[0] = campos.get(i).getNombreCampo();
+                c[1] = tipo;
+                c[2] = Integer.toString(campos.get(i).getLongitud());
+                if (campos.get(i).isLlave() == false) {
+                    c[3] = "No";
+                } else {
+                    c[3] = "Si";
+                }
+                modelo.addRow(c);
+            }
+            jt_modificarC.setModel(modelo);
             jd_modificarC.setModal(true);
             jd_modificarC.pack();
             jd_modificarC.setLocationRelativeTo(this);
@@ -509,18 +677,18 @@ public class Main extends javax.swing.JFrame {
             String[] c = new String[4];
             for (int i = 0; i < size; i++) {
                 //String tipo = Integer.toString(campos.get(i).getTipo());
-                String tipo="";
-                if (campos.get(i).getTipo()==0) {
-                    tipo="int";
+                String tipo = "";
+                if (campos.get(i).getTipo() == 0) {
+                    tipo = "int";
                 }
-                if (campos.get(i).getTipo()==1) {
-                    tipo="String";
+                if (campos.get(i).getTipo() == 1) {
+                    tipo = "String";
                 }
-                if (campos.get(i).getTipo()==2) {
-                    tipo="double";
+                if (campos.get(i).getTipo() == 2) {
+                    tipo = "double";
                 }
-                if (campos.get(i).getTipo()==3) {
-                    tipo="char";
+                if (campos.get(i).getTipo() == 3) {
+                    tipo = "char";
                 }
                 c[0] = campos.get(i).getNombreCampo();
                 c[1] = tipo;
@@ -560,7 +728,7 @@ public class Main extends javax.swing.JFrame {
             tf_nombrecampo.setText("");
             cb_tipo.setSelectedIndex(0);
             sp_size.setValue(0);
-       
+
         } catch (Exception e) {
         }
     }//GEN-LAST:event_crearCMouseClicked
@@ -581,18 +749,18 @@ public class Main extends javax.swing.JFrame {
             String[] c = new String[4];
             for (int i = 0; i < size; i++) {
                 //String tipo = Integer.toString(campos.get(i).getTipo());
-                String tipo="";
-                if (campos.get(i).getTipo()==0) {
-                    tipo="int";
+                String tipo = "";
+                if (campos.get(i).getTipo() == 0) {
+                    tipo = "int";
                 }
-                if (campos.get(i).getTipo()==1) {
-                    tipo="String";
+                if (campos.get(i).getTipo() == 1) {
+                    tipo = "String";
                 }
-                if (campos.get(i).getTipo()==2) {
-                    tipo="double";
+                if (campos.get(i).getTipo() == 2) {
+                    tipo = "double";
                 }
-                if (campos.get(i).getTipo()==3) {
-                    tipo="char";
+                if (campos.get(i).getTipo() == 3) {
+                    tipo = "char";
                 }
                 c[0] = campos.get(i).getNombreCampo();
                 c[1] = tipo;
@@ -609,6 +777,105 @@ public class Main extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jb_borrarCMouseClicked
+
+    private void rb_modiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rb_modiMouseClicked
+        // TODO add your handling code here:
+        try {
+            if (jt_modificarC.getSelectedRow() >= 0) {
+//                tf_nombrecampo1.setText((String) jt_modificarC.getValueAt(jt_modificarC.getSelectedRow(), 0));
+//                if ("int".equals((String) jt_modificarC.getValueAt(jt_modificarC.getSelectedRow(), 1))) {
+//                    cb_tipo1.setSelectedIndex(1);
+//                }
+//                if ("String".equals((String) jt_modificarC.getValueAt(jt_modificarC.getSelectedRow(), 1))) {
+//                    cb_tipo1.setSelectedIndex(1);
+//                }
+//                if ("double".equals((String) jt_modificarC.getValueAt(jt_modificarC.getSelectedRow(), 1))) {
+//                    cb_tipo1.setSelectedIndex(1);
+//                }
+//                if ("char".equals((String) jt_modificarC.getValueAt(jt_modificarC.getSelectedRow(), 1))) {
+//                    cb_tipo1.setSelectedIndex(1);
+//                }
+//                sp_size1.setValue((int) jt_modificarC.getValueAt(jt_modificarC.getSelectedRow(), 2));
+//                if ("Si".equals((String) jt_modificarC.getValueAt(jt_modificarC.getSelectedRow(), 3))) {
+//                    rb_yes1.setSelected(true);
+//                } else {
+//                    rb_no1.setSelected(true);
+//                }
+                jd_modi.setModal(true);
+                jd_modi.pack();
+                jd_modi.setLocationRelativeTo(this);
+                jd_modi.setVisible(true);
+//                jd_modi.setModal(true);
+//                jd_modi.pack();
+//                jd_modi.setLocationRelativeTo(this);
+//                jd_modi.setVisible(true);
+//                campos.get(jt_modificarC.getSelectedRow()).setNombreCampo(tf_nombrecampo1.getText());
+//                campos.get(jt_modificarC.getSelectedRow()).setTipo(cb_tipo1.getSelectedIndex());
+//                campos.get(jt_modificarC.getSelectedRow()).setLongitud((int) sp_size1.getValue());
+//                if (rb_yes1.isSelected()) {
+//                    campos.get(jt_modificarC.getSelectedRow()).setLlave(true);
+//                } else {
+//                    campos.get(jt_modificarC.getSelectedRow()).setLlave(false);
+//                }
+//                JOptionPane.showMessageDialog(jd_modi, "Modificado con exito");
+                jd_modi.setVisible(false);
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_rb_modiMouseClicked
+
+    private void rb_modificarFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rb_modificarFMouseClicked
+        // TODO add your handling code here:
+        try {
+            campos.get(jt_modificarC.getSelectedRow()).setNombreCampo(tf_nombrecampo1.getText());
+            campos.get(jt_modificarC.getSelectedRow()).setTipo(cb_tipo1.getSelectedIndex());
+            campos.get(jt_modificarC.getSelectedRow()).setLongitud((int) sp_size1.getValue());
+            if (rb_yes1.isSelected()) {
+                campos.get(jt_modificarC.getSelectedRow()).setLlave(true);
+            } else {
+                campos.get(jt_modificarC.getSelectedRow()).setLlave(false);
+            }
+            JOptionPane.showMessageDialog(jd_modi, "Modificado con exito");
+            jd_modi.setVisible(false);
+            DefaultTableModel modelo = new DefaultTableModel();
+            int size = campos.size();
+            //for (int i = 0; i < size; i++) {
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Tipo");
+            modelo.addColumn("longitud");
+            modelo.addColumn("Llave primaria");
+            //}
+            jt_modificarC.setModel(modelo);
+            String[] c = new String[4];
+            for (int i = 0; i < size; i++) {
+                //String tipo = Integer.toString(campos.get(i).getTipo());
+                String tipo = "";
+                if (campos.get(i).getTipo() == 0) {
+                    tipo = "int";
+                }
+                if (campos.get(i).getTipo() == 1) {
+                    tipo = "String";
+                }
+                if (campos.get(i).getTipo() == 2) {
+                    tipo = "double";
+                }
+                if (campos.get(i).getTipo() == 3) {
+                    tipo = "char";
+                }
+                c[0] = campos.get(i).getNombreCampo();
+                c[1] = tipo;
+                c[2] = Integer.toString(campos.get(i).getLongitud());
+                if (campos.get(i).isLlave() == false) {
+                    c[3] = "No";
+                } else {
+                    c[3] = "Si";
+                }
+                modelo.addRow(c);
+            }
+            jt_modificarC.setModel(modelo);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_rb_modificarFMouseClicked
 
     /**
      * @param args the command line arguments
@@ -647,9 +914,14 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cb_tipo;
+    private javax.swing.JComboBox<String> cb_tipo1;
     private javax.swing.JButton crearC;
     private javax.swing.ButtonGroup grupo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -657,18 +929,21 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton jb_abrirAr;
     private javax.swing.JButton jb_borrarC;
     private javax.swing.JButton jb_nuevoAr;
     private javax.swing.JDialog jd_borrarC;
     private javax.swing.JDialog jd_crearC;
     private javax.swing.JDialog jd_listarc;
+    private javax.swing.JDialog jd_modi;
     private javax.swing.JDialog jd_modificarC;
     private javax.swing.JMenu jm_archivo;
     private javax.swing.JMenu jm_campos;
@@ -680,10 +955,17 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmi_modificarCampo;
     private javax.swing.JTable jt_borrarC;
     private javax.swing.JTable jt_campos;
+    private javax.swing.JTable jt_modificarC;
+    private javax.swing.JButton rb_modi;
+    private javax.swing.JButton rb_modificarF;
     private javax.swing.JRadioButton rb_no;
+    private javax.swing.JRadioButton rb_no1;
     private javax.swing.JRadioButton rb_yes;
+    private javax.swing.JRadioButton rb_yes1;
     private javax.swing.JSpinner sp_size;
+    private javax.swing.JSpinner sp_size1;
     private javax.swing.JTextField tf_nombrecampo;
+    private javax.swing.JTextField tf_nombrecampo1;
     // End of variables declaration//GEN-END:variables
     ArrayList<Campo> campos = new ArrayList();
 }
