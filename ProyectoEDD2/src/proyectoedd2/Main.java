@@ -367,6 +367,7 @@ public class Main extends javax.swing.JFrame {
             jd_crearC.pack();
             jd_crearC.setLocationRelativeTo(this);
             jd_crearC.setVisible(true);
+            
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jmi_crearCampoActionPerformed
@@ -392,7 +393,7 @@ public class Main extends javax.swing.JFrame {
     private void jb_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_exitMouseClicked
         // TODO add your handling code here:
         try {
-           
+           System.exit(0);
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jb_exitMouseClicked
