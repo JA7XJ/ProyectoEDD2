@@ -1,5 +1,9 @@
 package proyectoedd2;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class Main extends javax.swing.JFrame {
 
     public Main() {
@@ -24,22 +28,21 @@ public class Main extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         tf_nombrecampo = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jSpinner1 = new javax.swing.JSpinner();
+        cb_tipo = new javax.swing.JComboBox<>();
+        sp_size = new javax.swing.JSpinner();
         rb_yes = new javax.swing.JRadioButton();
         rb_no = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        crearC = new javax.swing.JButton();
         jd_modificarC = new javax.swing.JDialog();
         jd_borrarC = new javax.swing.JDialog();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        jt_borrarC = new javax.swing.JTable();
+        jb_borrarC = new javax.swing.JButton();
         grupo = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jb_nuevoAr = new javax.swing.JButton();
         jb_abrirAr = new javax.swing.JButton();
-        jb_exit = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jm_archivo = new javax.swing.JMenu();
         jmi_guardarArchivo = new javax.swing.JMenuItem();
@@ -104,7 +107,7 @@ public class Main extends javax.swing.JFrame {
 
         jLabel7.setText("¿Es llave primaria?");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "int", "String", "double", "char", " " }));
 
         grupo.add(rb_yes);
         rb_yes.setText("Si");
@@ -112,7 +115,12 @@ public class Main extends javax.swing.JFrame {
         grupo.add(rb_no);
         rb_no.setText("No");
 
-        jButton1.setText("Crear");
+        crearC.setText("Crear");
+        crearC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                crearCMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jd_crearCLayout = new javax.swing.GroupLayout(jd_crearC.getContentPane());
         jd_crearC.getContentPane().setLayout(jd_crearCLayout);
@@ -126,26 +134,25 @@ public class Main extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(jd_crearCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jd_crearCLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jd_crearCLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tf_nombrecampo, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jd_crearCLayout.createSequentialGroup()
-                        .addGroup(jd_crearCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jd_crearCLayout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinner1))
-                            .addComponent(jLabel7))
+                        .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rb_yes)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jd_crearCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(rb_no))))
+                            .addComponent(crearC)
+                            .addComponent(rb_no)))
+                    .addGroup(jd_crearCLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_crearCLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sp_size, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         jd_crearCLayout.setVerticalGroup(
@@ -160,11 +167,11 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jd_crearCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cb_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jd_crearCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sp_size, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jd_crearCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
@@ -172,7 +179,7 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(rb_yes)
                         .addComponent(rb_no)))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(crearC)
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -190,7 +197,8 @@ public class Main extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Seleccione campo a borrar");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jt_borrarC.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jt_borrarC.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -198,9 +206,14 @@ public class Main extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(jt_borrarC);
 
-        jButton2.setText("Borrar");
+        jb_borrarC.setText("Borrar");
+        jb_borrarC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_borrarCMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jd_borrarCLayout = new javax.swing.GroupLayout(jd_borrarC.getContentPane());
         jd_borrarC.getContentPane().setLayout(jd_borrarCLayout);
@@ -218,7 +231,7 @@ public class Main extends javax.swing.JFrame {
                                 .addComponent(jLabel8))
                             .addGroup(jd_borrarCLayout.createSequentialGroup()
                                 .addGap(164, 164, 164)
-                                .addComponent(jButton2)))
+                                .addComponent(jb_borrarC)))
                         .addGap(0, 76, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -230,7 +243,7 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(jb_borrarC)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -250,13 +263,6 @@ public class Main extends javax.swing.JFrame {
         jb_abrirAr.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jb_abrirArMouseClicked(evt);
-            }
-        });
-
-        jb_exit.setText("Salir");
-        jb_exit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jb_exitMouseClicked(evt);
             }
         });
 
@@ -333,10 +339,7 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jb_nuevoAr)
                         .addGap(63, 63, 63)
-                        .addComponent(jb_abrirAr, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
-                        .addComponent(jb_exit)))
+                        .addComponent(jb_abrirAr, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(66, 66, 66))
         );
         layout.setVerticalGroup(
@@ -348,9 +351,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jb_nuevoAr, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jb_abrirAr, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jb_exit)
-                .addGap(23, 23, 23))
+                .addGap(64, 64, 64))
         );
 
         pack();
@@ -367,7 +368,11 @@ public class Main extends javax.swing.JFrame {
             jd_crearC.pack();
             jd_crearC.setLocationRelativeTo(this);
             jd_crearC.setVisible(true);
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> 3a233748f75ad3c75e57fd9bf2ab8785aa38f1a0
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jmi_crearCampoActionPerformed
@@ -390,6 +395,7 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb_abrirArMouseClicked
 
+<<<<<<< HEAD
     private void jb_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_exitMouseClicked
         // TODO add your handling code here:
         try {
@@ -398,6 +404,8 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb_exitMouseClicked
 
+=======
+>>>>>>> 3a233748f75ad3c75e57fd9bf2ab8785aa38f1a0
     private void jmi_cerrarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_cerrarArchivoActionPerformed
         // TODO add your handling code here:
         try {
@@ -410,6 +418,42 @@ public class Main extends javax.swing.JFrame {
     private void jmi_listarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_listarCampoActionPerformed
         // TODO add your handling code here:
         try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            int size = campos.size();
+            //for (int i = 0; i < size; i++) {
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Tipo");
+            modelo.addColumn("longitud");
+            modelo.addColumn("Llave primaria");
+            //}
+            jt_campos.setModel(modelo);
+            String[] c = new String[4];
+            for (int i = 0; i < size; i++) {
+                //String tipo = Integer.toString(campos.get(i).getTipo());
+                String tipo="";
+                if (campos.get(i).getTipo()==0) {
+                    tipo="int";
+                }
+                if (campos.get(i).getTipo()==1) {
+                    tipo="String";
+                }
+                if (campos.get(i).getTipo()==2) {
+                    tipo="double";
+                }
+                if (campos.get(i).getTipo()==3) {
+                    tipo="char";
+                }
+                c[0] = campos.get(i).getNombreCampo();
+                c[1] = tipo;
+                c[2] = Integer.toString(campos.get(i).getLongitud());
+                if (campos.get(i).isLlave() == false) {
+                    c[3] = "No";
+                } else {
+                    c[3] = "Si";
+                }
+                modelo.addRow(c);
+            }
+            jt_campos.setModel(modelo);
             jd_listarc.setModal(true);
             jd_listarc.pack();
             jd_listarc.setLocationRelativeTo(this);
@@ -432,6 +476,42 @@ public class Main extends javax.swing.JFrame {
     private void jmi_borrarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_borrarCamposActionPerformed
         // TODO add your handling code here:
         try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            int size = campos.size();
+            //for (int i = 0; i < size; i++) {
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Tipo");
+            modelo.addColumn("longitud");
+            modelo.addColumn("Llave primaria");
+            //}
+            jt_borrarC.setModel(modelo);
+            String[] c = new String[4];
+            for (int i = 0; i < size; i++) {
+                //String tipo = Integer.toString(campos.get(i).getTipo());
+                String tipo="";
+                if (campos.get(i).getTipo()==0) {
+                    tipo="int";
+                }
+                if (campos.get(i).getTipo()==1) {
+                    tipo="String";
+                }
+                if (campos.get(i).getTipo()==2) {
+                    tipo="double";
+                }
+                if (campos.get(i).getTipo()==3) {
+                    tipo="char";
+                }
+                c[0] = campos.get(i).getNombreCampo();
+                c[1] = tipo;
+                c[2] = Integer.toString(campos.get(i).getLongitud());
+                if (campos.get(i).isLlave() == false) {
+                    c[3] = "No";
+                } else {
+                    c[3] = "Si";
+                }
+                modelo.addRow(c);
+            }
+            jt_borrarC.setModel(modelo);
             jd_borrarC.setModal(true);
             jd_borrarC.pack();
             jd_borrarC.setLocationRelativeTo(this);
@@ -439,6 +519,75 @@ public class Main extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jmi_borrarCamposActionPerformed
+
+    private void crearCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_crearCMouseClicked
+        // TODO add your handling code here:
+        try {
+            /*int tipo;
+            if (cb_tipo.getSelectedIndex()==0) {
+                int
+            }*/
+            boolean key;
+            if (rb_yes.isSelected()) {
+                key = true;
+            } else {
+                key = false;
+            }
+            campos.add(new Campo(tf_nombrecampo.getText(), cb_tipo.getSelectedIndex(), (int) sp_size.getValue(), key));
+            JOptionPane.showMessageDialog(jd_crearC, "Campo creado con exito");
+            jd_crearC.setVisible(false);
+            tf_nombrecampo.setText("");
+            cb_tipo.setSelectedIndex(0);
+            sp_size.setValue(0);
+       
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_crearCMouseClicked
+
+    private void jb_borrarCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_borrarCMouseClicked
+        // TODO add your handling code here:
+        try {
+            campos.remove(jt_borrarC.getSelectedRow());
+            DefaultTableModel modelo = new DefaultTableModel();
+            int size = campos.size();
+            //for (int i = 0; i < size; i++) {
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Tipo");
+            modelo.addColumn("longitud");
+            modelo.addColumn("Llave primaria");
+            //}
+            jt_borrarC.setModel(modelo);
+            String[] c = new String[4];
+            for (int i = 0; i < size; i++) {
+                //String tipo = Integer.toString(campos.get(i).getTipo());
+                String tipo="";
+                if (campos.get(i).getTipo()==0) {
+                    tipo="int";
+                }
+                if (campos.get(i).getTipo()==1) {
+                    tipo="String";
+                }
+                if (campos.get(i).getTipo()==2) {
+                    tipo="double";
+                }
+                if (campos.get(i).getTipo()==3) {
+                    tipo="char";
+                }
+                c[0] = campos.get(i).getNombreCampo();
+                c[1] = tipo;
+                c[2] = Integer.toString(campos.get(i).getLongitud());
+                if (campos.get(i).isLlave() == false) {
+                    c[3] = "No";
+                } else {
+                    c[3] = "Si";
+                }
+                modelo.addRow(c);
+            }
+            jt_borrarC.setModel(modelo);
+            JOptionPane.showMessageDialog(jd_borrarC, "Campo borrado con exito");
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jb_borrarCMouseClicked
 
     /**
      * @param args the command line arguments
@@ -476,10 +625,9 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cb_tipo;
+    private javax.swing.JButton crearC;
     private javax.swing.ButtonGroup grupo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -494,10 +642,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton jb_abrirAr;
-    private javax.swing.JButton jb_exit;
+    private javax.swing.JButton jb_borrarC;
     private javax.swing.JButton jb_nuevoAr;
     private javax.swing.JDialog jd_borrarC;
     private javax.swing.JDialog jd_crearC;
@@ -511,9 +657,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmi_guardarArchivo;
     private javax.swing.JMenuItem jmi_listarCampo;
     private javax.swing.JMenuItem jmi_modificarCampo;
+    private javax.swing.JTable jt_borrarC;
     private javax.swing.JTable jt_campos;
     private javax.swing.JRadioButton rb_no;
     private javax.swing.JRadioButton rb_yes;
+    private javax.swing.JSpinner sp_size;
     private javax.swing.JTextField tf_nombrecampo;
     // End of variables declaration//GEN-END:variables
+    ArrayList<Campo> campos = new ArrayList();
 }

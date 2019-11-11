@@ -104,31 +104,29 @@
                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jComboBox1" min="-2" pref="97" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="tf_nombrecampo" min="-2" pref="234" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jSpinner1" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="rb_yes" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                              <Component id="crearC" min="-2" max="-2" attributes="0"/>
                               <Component id="rb_no" min="-2" max="-2" attributes="0"/>
                           </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="cb_tipo" min="-2" pref="97" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="sp_size" min="-2" pref="90" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="36" max="32767" attributes="0"/>
@@ -148,12 +146,12 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cb_tipo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="sp_size" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -164,7 +162,7 @@
                       </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <Component id="crearC" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="21" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -201,14 +199,15 @@
         </Component>
         <Component class="javax.swing.JTextField" name="tf_nombrecampo">
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="cb_tipo">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+              <StringArray count="5">
+                <StringItem index="0" value="int"/>
+                <StringItem index="1" value="String"/>
+                <StringItem index="2" value="double"/>
+                <StringItem index="3" value="char"/>
+                <StringItem index="4" value=" "/>
               </StringArray>
             </Property>
           </Properties>
@@ -216,7 +215,7 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JSpinner" name="jSpinner1">
+        <Component class="javax.swing.JSpinner" name="sp_size">
         </Component>
         <Component class="javax.swing.JRadioButton" name="rb_yes">
           <Properties>
@@ -234,10 +233,13 @@
             <Property name="text" type="java.lang.String" value="No"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="crearC">
           <Properties>
             <Property name="text" type="java.lang.String" value="Crear"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="crearCMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -275,7 +277,7 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="164" max="-2" attributes="0"/>
-                                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jb_borrarC" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="0" pref="76" max="32767" attributes="0"/>
@@ -293,7 +295,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane2" min="-2" pref="253" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                  <Component id="jb_borrarC" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -315,8 +317,13 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable1">
+            <Component class="javax.swing.JTable" name="jt_borrarC">
               <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                    <EtchetBorder/>
+                  </Border>
+                </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="0" rowCount="0"/>
                 </Property>
@@ -324,10 +331,13 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="jb_borrarC">
           <Properties>
             <Property name="text" type="java.lang.String" value="Borrar"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jb_borrarCMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -437,10 +447,6 @@
                       <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                       <Component id="jb_abrirAr" min="-2" pref="110" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
-                      <Component id="jb_exit" min="-2" max="-2" attributes="0"/>
-                  </Group>
               </Group>
               <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
           </Group>
@@ -456,9 +462,7 @@
                   <Component id="jb_nuevoAr" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="jb_abrirAr" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jb_exit" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -486,14 +490,6 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jb_abrirArMouseClicked"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="jb_exit">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Salir"/>
-      </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jb_exitMouseClicked"/>
       </Events>
     </Component>
   </SubComponents>
