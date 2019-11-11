@@ -439,10 +439,6 @@
                       <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                       <Component id="jb_abrirAr" min="-2" pref="110" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
-                      <Component id="jb_exit" min="-2" max="-2" attributes="0"/>
-                  </Group>
               </Group>
               <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
           </Group>
@@ -458,9 +454,7 @@
                   <Component id="jb_nuevoAr" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="jb_abrirAr" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jb_exit" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -488,14 +482,6 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jb_abrirArMouseClicked"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="jb_exit">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Salir"/>
-      </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jb_exitMouseClicked"/>
       </Events>
     </Component>
   </SubComponents>

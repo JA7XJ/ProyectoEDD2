@@ -1,6 +1,8 @@
 package proyectoedd2;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Main extends javax.swing.JFrame {
 
@@ -41,7 +43,6 @@ public class Main extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jb_nuevoAr = new javax.swing.JButton();
         jb_abrirAr = new javax.swing.JButton();
-        jb_exit = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jm_archivo = new javax.swing.JMenu();
         jmi_guardarArchivo = new javax.swing.JMenuItem();
@@ -259,13 +260,6 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        jb_exit.setText("Salir");
-        jb_exit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jb_exitMouseClicked(evt);
-            }
-        });
-
         jm_archivo.setText("Archivo");
         jm_archivo.setEnabled(false);
 
@@ -339,10 +333,7 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jb_nuevoAr)
                         .addGap(63, 63, 63)
-                        .addComponent(jb_abrirAr, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
-                        .addComponent(jb_exit)))
+                        .addComponent(jb_abrirAr, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(66, 66, 66))
         );
         layout.setVerticalGroup(
@@ -354,9 +345,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jb_nuevoAr, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jb_abrirAr, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jb_exit)
-                .addGap(23, 23, 23))
+                .addGap(64, 64, 64))
         );
 
         pack();
@@ -373,7 +362,7 @@ public class Main extends javax.swing.JFrame {
             jd_crearC.pack();
             jd_crearC.setLocationRelativeTo(this);
             jd_crearC.setVisible(true);
-            
+
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jmi_crearCampoActionPerformed
@@ -396,14 +385,6 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb_abrirArMouseClicked
 
-    private void jb_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_exitMouseClicked
-        // TODO add your handling code here:
-        try {
-           
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_jb_exitMouseClicked
-
     private void jmi_cerrarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_cerrarArchivoActionPerformed
         // TODO add your handling code here:
         try {
@@ -416,6 +397,42 @@ public class Main extends javax.swing.JFrame {
     private void jmi_listarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_listarCampoActionPerformed
         // TODO add your handling code here:
         try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            int size = campos.size();
+            //for (int i = 0; i < size; i++) {
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Tipo");
+            modelo.addColumn("longitud");
+            modelo.addColumn("Llave primaria");
+            //}
+            jt_campos.setModel(modelo);
+            String[] c = new String[4];
+            for (int i = 0; i < size; i++) {
+                //String tipo = Integer.toString(campos.get(i).getTipo());
+                String tipo="";
+                if (campos.get(i).getTipo()==0) {
+                    tipo="int";
+                }
+                if (campos.get(i).getTipo()==1) {
+                    tipo="String";
+                }
+                if (campos.get(i).getTipo()==2) {
+                    tipo="double";
+                }
+                if (campos.get(i).getTipo()==3) {
+                    tipo="char";
+                }
+                c[0] = campos.get(i).getNombreCampo();
+                c[1] = tipo;
+                c[2] = Integer.toString(campos.get(i).getLongitud());
+                if (campos.get(i).isLlave() == false) {
+                    c[3] = "No";
+                } else {
+                    c[3] = "Si";
+                }
+                modelo.addRow(c);
+            }
+            jt_campos.setModel(modelo);
             jd_listarc.setModal(true);
             jd_listarc.pack();
             jd_listarc.setLocationRelativeTo(this);
@@ -455,11 +472,17 @@ public class Main extends javax.swing.JFrame {
             }*/
             boolean key;
             if (rb_yes.isSelected()) {
-                key=true;
-            }else{
-                key=false;
+                key = true;
+            } else {
+                key = false;
             }
-            campos.add(new Campo(tf_nombrecampo.getText(), cb_tipo.getSelectedIndex(), (int)sp_size.getValue(), key));
+            campos.add(new Campo(tf_nombrecampo.getText(), cb_tipo.getSelectedIndex(), (int) sp_size.getValue(), key));
+            JOptionPane.showMessageDialog(jd_crearC, "Campo creado con exito");
+            jd_crearC.setVisible(false);
+            tf_nombrecampo.setText("");
+            cb_tipo.setSelectedIndex(0);
+            sp_size.setValue(0);
+       
         } catch (Exception e) {
         }
     }//GEN-LAST:event_crearCMouseClicked
@@ -520,7 +543,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton jb_abrirAr;
-    private javax.swing.JButton jb_exit;
     private javax.swing.JButton jb_nuevoAr;
     private javax.swing.JDialog jd_borrarC;
     private javax.swing.JDialog jd_crearC;
@@ -540,5 +562,5 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JSpinner sp_size;
     private javax.swing.JTextField tf_nombrecampo;
     // End of variables declaration//GEN-END:variables
-    ArrayList<Campo> campos=new ArrayList();
+    ArrayList<Campo> campos = new ArrayList();
 }
