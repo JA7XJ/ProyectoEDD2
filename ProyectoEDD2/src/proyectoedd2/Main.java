@@ -521,18 +521,14 @@ public class Main extends javax.swing.JFrame {
             guardar.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 
             File archivo = guardar.getSelectedFile();
-            /*File ruta = guardar.getCurrentDirectory();
-
-            String nombre_archivo = guardar.getSelectedFile().getName();*/
-            //DateiSpeichern(ruta);
-            DateiSpeichern(archivo);
+            GuardarArchivo(archivo);
             
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jb_nuevoArMouseClicked
 
-    void DateiSpeichern(File ruta) {
-        File archivo = new File(ruta.getPath());
+    void GuardarArchivo(File archivo_nuevo) {
+        File archivo = new File(archivo_nuevo.getPath());
         FileWriter fw;
         try {
             fw = new FileWriter(archivo, true);
