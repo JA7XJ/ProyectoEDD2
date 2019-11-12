@@ -515,17 +515,18 @@ public class Main extends javax.swing.JFrame {
             jm_campos.setEnabled(true);
             //aqui crear archivo
             JFileChooser guardar = new JFileChooser();
-            FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivo texto", "txt");
-            guardar.setFileFilter(filtro);
+            //FileNameExtensionFilter filtro = new FileNameExtensionFilter(".txt","txt");
+            //guardar.setFileFilter(filtro);
             guardar.showSaveDialog(null);
             guardar.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 
             File archivo = guardar.getSelectedFile();
-            File ruta = guardar.getCurrentDirectory();
+            /*File ruta = guardar.getCurrentDirectory();
 
-            String nombre_archivo = guardar.getSelectedFile().getName();
-            DateiSpeichern(ruta);
-
+            String nombre_archivo = guardar.getSelectedFile().getName();*/
+            //DateiSpeichern(ruta);
+            DateiSpeichern(archivo);
+            
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jb_nuevoArMouseClicked
@@ -535,7 +536,7 @@ public class Main extends javax.swing.JFrame {
         FileWriter fw;
         try {
             fw = new FileWriter(archivo, true);
-            //fw.write(info);
+            fw.write("");
             fw.close();
         } catch (Exception e) {
         }
