@@ -2,7 +2,10 @@ package proyectoedd2;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -406,6 +409,11 @@ public class Main extends javax.swing.JFrame {
         jm_archivo.setEnabled(false);
 
         jmi_guardarArchivo.setText("Guardar Archivo");
+        jmi_guardarArchivo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmi_guardarArchivoMouseClicked(evt);
+            }
+        });
         jmi_guardarArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmi_guardarArchivoActionPerformed(evt);
@@ -494,7 +502,23 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmi_guardarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_guardarArchivoActionPerformed
-        // TODO add your handling code here:
+        // guardar
+        try {
+            //aqui guardar archivo;
+            JOptionPane.showMessageDialog(this, rutaAbierto);
+            String texto = "";
+            File archivo = null;
+            FileWriter escribir = null;
+            archivo = new File(rutaAbierto);
+            escribir = new FileWriter(archivo);
+            
+            texto = campos.toString();               
+            escribir.write(texto);
+            escribir.close();
+            jm_archivo.setEnabled(false);
+            jm_campos.setEnabled(false);
+        } catch (Exception ex) {        
+        }
     }//GEN-LAST:event_jmi_guardarArchivoActionPerformed
 
     private void jmi_crearCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_crearCampoActionPerformed
@@ -521,13 +545,17 @@ public class Main extends javax.swing.JFrame {
             guardar.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 
             File archivo = guardar.getSelectedFile();
-            GuardarArchivo(archivo);
+            
+            rutaAbierto = archivo.getPath(); //indicar que es el que se esta usando
+            
+            CrearArchivo(archivo);
+            
             
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jb_nuevoArMouseClicked
 
-    void GuardarArchivo(File archivo_nuevo) {
+    void CrearArchivo(File archivo_nuevo) {
         File archivo = new File(archivo_nuevo.getPath());
         FileWriter fw;
         try {
@@ -874,6 +902,31 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_rb_modificarFMouseClicked
 
+    private void jmi_guardarArchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmi_guardarArchivoMouseClicked
+//        try {
+//            //aqui guardar archivo;
+//            JOptionPane.showMessageDialog(this, rutaAbierto);
+//            String texto = "";
+//            File archivo = null;
+//            FileWriter escribir = null;
+//            archivo = new File(rutaAbierto);
+//            escribir = new FileWriter(archivo);
+//            for (int i = 0; i < campos.size(); i++) {
+//            texto += "|"+campos.get(i).getNombreCampo()+","
+//                    +campos.get(i).getTipo()
+//                    +campos.get(i).getLongitud()
+//                    +"|";    
+//            }
+////            String texto = "|"+campos.get(0).getNombreCampo()+","
+////                    +campos.get(0).getTipo()
+////                    +campos.get(0).getLongitud()
+////                    +"|";
+//            escribir.write(texto);
+//            escribir.close();
+//        } catch (Exception ex) {        
+//        }
+    }//GEN-LAST:event_jmi_guardarArchivoMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -965,4 +1018,5 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField tf_nombrecampo1;
     // End of variables declaration//GEN-END:variables
     ArrayList<Campo> campos = new ArrayList();
+    String rutaAbierto;
 }

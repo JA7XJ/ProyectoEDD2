@@ -51,7 +51,7 @@ public class Campo {
 
     @Override
     public String toString() {
-        return "Campo{" + "NombreCampo=" + NombreCampo + ", tipo=" + tipo + ", longitud=" + longitud + ", llave=" + llave + '}';
+        return "|" +  NombreCampo + "," + tipo + "," + longitud + "|";
     }
 
 }
