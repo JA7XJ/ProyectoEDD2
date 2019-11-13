@@ -65,6 +65,7 @@ public class Main extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jb_nuevoAr = new javax.swing.JButton();
         jb_abrirAr = new javax.swing.JButton();
+        btn_Salida = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jm_archivo = new javax.swing.JMenu();
         jmi_guardarArchivo = new javax.swing.JMenuItem();
@@ -405,15 +406,17 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        btn_Salida.setText("❌");
+        btn_Salida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_SalidaMouseClicked(evt);
+            }
+        });
+
         jm_archivo.setText("Archivo");
         jm_archivo.setEnabled(false);
 
         jmi_guardarArchivo.setText("Guardar Archivo");
-        jmi_guardarArchivo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jmi_guardarArchivoMouseClicked(evt);
-            }
-        });
         jmi_guardarArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmi_guardarArchivoActionPerformed(evt);
@@ -474,17 +477,22 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(73, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jb_nuevoAr)
-                        .addGap(63, 63, 63)
-                        .addComponent(jb_abrirAr, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(66, 66, 66))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jb_nuevoAr)
+                                .addGap(63, 63, 63)
+                                .addComponent(jb_abrirAr, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(66, 66, 66))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btn_Salida)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -495,7 +503,9 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jb_nuevoAr, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jb_abrirAr, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(64, 64, 64))
+                .addGap(26, 26, 26)
+                .addComponent(btn_Salida)
+                .addContainerGap())
         );
 
         pack();
@@ -510,13 +520,13 @@ public class Main extends javax.swing.JFrame {
             FileWriter escribir = null;
             archivo = new File(rutaAbierto);
             escribir = new FileWriter(archivo);
-            
-            texto = campos.toString();               
+
+            texto = campos.toString();
             escribir.append(texto);
             escribir.close();
             jm_archivo.setEnabled(false);
             jm_campos.setEnabled(false);
-        } catch (Exception ex) {        
+        } catch (Exception ex) {
         }
     }//GEN-LAST:event_jmi_guardarArchivoActionPerformed
 
@@ -545,12 +555,11 @@ public class Main extends javax.swing.JFrame {
             guardar.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 
             File archivo = guardar.getSelectedFile();
-            
+
             rutaAbierto = archivo.getPath(); //indicar que es el que se esta usando
-            
+
             CrearArchivo(archivo);
-            
-            
+
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jb_nuevoArMouseClicked
@@ -578,15 +587,15 @@ public class Main extends javax.swing.JFrame {
             abrir.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 
             File archivo = abrir.getSelectedFile();
-            
+
             rutaAbierto = archivo.getPath(); //indicar que es el que se esta usando
-            
+
             AbrirArchivo(archivo);
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jb_abrirArMouseClicked
 
-    public void AbrirArchivo(File archivo){
+    public void AbrirArchivo(File archivo) {
         File archivo_nuevo = new File(archivo.getPath());
         FileWriter fw;
         try {
@@ -596,7 +605,7 @@ public class Main extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
-    
+
     private void jb_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_exitMouseClicked
         // TODO add your handling code here:
         try {
@@ -926,30 +935,13 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_rb_modificarFMouseClicked
 
-    private void jmi_guardarArchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmi_guardarArchivoMouseClicked
-//        try {
-//            //aqui guardar archivo;
-//            JOptionPane.showMessageDialog(this, rutaAbierto);
-//            String texto = "";
-//            File archivo = null;
-//            FileWriter escribir = null;
-//            archivo = new File(rutaAbierto);
-//            escribir = new FileWriter(archivo);
-//            for (int i = 0; i < campos.size(); i++) {
-//            texto += "|"+campos.get(i).getNombreCampo()+","
-//                    +campos.get(i).getTipo()
-//                    +campos.get(i).getLongitud()
-//                    +"|";    
-//            }
-////            String texto = "|"+campos.get(0).getNombreCampo()+","
-////                    +campos.get(0).getTipo()
-////                    +campos.get(0).getLongitud()
-////                    +"|";
-//            escribir.write(texto);
-//            escribir.close();
-//        } catch (Exception ex) {        
-//        }
-    }//GEN-LAST:event_jmi_guardarArchivoMouseClicked
+    private void btn_SalidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SalidaMouseClicked
+        try {
+            System.exit(0);
+        } catch (Exception e) {
+        }
+
+    }//GEN-LAST:event_btn_SalidaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -987,6 +979,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Salida;
     private javax.swing.JComboBox<String> cb_tipo;
     private javax.swing.JComboBox<String> cb_tipo1;
     private javax.swing.JButton crearC;
