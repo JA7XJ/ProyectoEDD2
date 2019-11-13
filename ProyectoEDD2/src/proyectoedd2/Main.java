@@ -581,13 +581,20 @@ public class Main extends javax.swing.JFrame {
             
             rutaAbierto = archivo.getPath(); //indicar que es el que se esta usando
             
-            CrearArchivo(archivo);
+            AbrirArchivo(archivo);
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jb_abrirArMouseClicked
 
-    public void AbrirArchivo(){
-    
+    public void AbrirArchivo(File archivo){
+        File archivo_nuevo = new File(archivo.getPath());
+        FileWriter fw;
+        try {
+            fw = new FileWriter(archivo_nuevo, true);
+            fw.append(campos.toString());
+            fw.close();
+        } catch (Exception e) {
+        }
     }
     
     private void jb_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_exitMouseClicked
@@ -955,7 +962,7 @@ public class Main extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
