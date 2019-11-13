@@ -505,7 +505,6 @@ public class Main extends javax.swing.JFrame {
         // guardar
         try {
             //aqui guardar archivo;
-            //JOptionPane.showMessageDialog(this, rutaAbierto);
             String texto = "";
             File archivo = null;
             FileWriter escribir = null;
@@ -513,7 +512,7 @@ public class Main extends javax.swing.JFrame {
             escribir = new FileWriter(archivo);
             
             texto = campos.toString();               
-            escribir.write(texto);
+            escribir.append(texto);
             escribir.close();
             jm_archivo.setEnabled(false);
             jm_campos.setEnabled(false);
@@ -537,7 +536,7 @@ public class Main extends javax.swing.JFrame {
         try {
             jm_archivo.setEnabled(true);
             jm_campos.setEnabled(true);
-            jb_nuevoAr.setEnabled(false);
+            jb_abrirAr.setEnabled(false);
             //aqui crear archivo
             JFileChooser guardar = new JFileChooser();
             //FileNameExtensionFilter filtro = new FileNameExtensionFilter(".txt","txt");
@@ -587,6 +586,10 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb_abrirArMouseClicked
 
+    public void AbrirArchivo(){
+    
+    }
+    
     private void jb_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_exitMouseClicked
         // TODO add your handling code here:
         try {
@@ -602,6 +605,7 @@ public class Main extends javax.swing.JFrame {
             jm_campos.setEnabled(false);
             jb_nuevoAr.setEnabled(true);
             jb_abrirAr.setEnabled(true);
+            rutaAbierto = "";
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jmi_cerrarArchivoActionPerformed
