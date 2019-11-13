@@ -505,7 +505,7 @@ public class Main extends javax.swing.JFrame {
         // guardar
         try {
             //aqui guardar archivo;
-            JOptionPane.showMessageDialog(this, rutaAbierto);
+            //JOptionPane.showMessageDialog(this, rutaAbierto);
             String texto = "";
             File archivo = null;
             FileWriter escribir = null;
@@ -572,6 +572,15 @@ public class Main extends javax.swing.JFrame {
         try {
             jm_archivo.setEnabled(true);
             jm_campos.setEnabled(true);
+            JFileChooser abrir = new JFileChooser();
+            abrir.showSaveDialog(null);
+            abrir.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+
+            File archivo = abrir.getSelectedFile();
+            
+            rutaAbierto = archivo.getPath(); //indicar que es el que se esta usando
+            
+            CrearArchivo(archivo);
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jb_abrirArMouseClicked
