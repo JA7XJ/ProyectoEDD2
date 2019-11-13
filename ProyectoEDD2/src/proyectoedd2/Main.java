@@ -537,6 +537,7 @@ public class Main extends javax.swing.JFrame {
         try {
             jm_archivo.setEnabled(true);
             jm_campos.setEnabled(true);
+            jb_nuevoAr.setEnabled(false);
             //aqui crear archivo
             JFileChooser guardar = new JFileChooser();
             //FileNameExtensionFilter filtro = new FileNameExtensionFilter(".txt","txt");
@@ -570,6 +571,7 @@ public class Main extends javax.swing.JFrame {
     private void jb_abrirArMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_abrirArMouseClicked
         // TODO add your handling code here:
         try {
+            jb_nuevoAr.setEnabled(false);
             jm_archivo.setEnabled(true);
             jm_campos.setEnabled(true);
             JFileChooser abrir = new JFileChooser();
@@ -598,6 +600,8 @@ public class Main extends javax.swing.JFrame {
         try {
             jm_archivo.setEnabled(false);
             jm_campos.setEnabled(false);
+            jb_nuevoAr.setEnabled(true);
+            jb_abrirAr.setEnabled(true);
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jmi_cerrarArchivoActionPerformed
