@@ -131,6 +131,11 @@ public class Main extends javax.swing.JFrame {
         jLabel7.setText("¿Es llave primaria?");
 
         cb_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "int", "String", "double", "char", " " }));
+        cb_tipo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_tipoItemStateChanged(evt);
+            }
+        });
 
         grupo.add(rb_yes);
         rb_yes.setText("Si");
@@ -524,20 +529,19 @@ public class Main extends javax.swing.JFrame {
             texto = campos.toString();
             escribir.append(texto);
             escribir.close();
-            jm_archivo.setEnabled(false);
-            jm_campos.setEnabled(false);
+            
         } catch (Exception ex) {
         }
     }//GEN-LAST:event_jmi_guardarArchivoActionPerformed
 
     private void jmi_crearCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_crearCampoActionPerformed
-        // TODO add your handling code here:
+        // Cre
         try {
+            sp_size.setEnabled(false);
             jd_crearC.setModal(true);
             jd_crearC.pack();
             jd_crearC.setLocationRelativeTo(this);
             jd_crearC.setVisible(true);
-
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jmi_crearCampoActionPerformed
@@ -622,6 +626,8 @@ public class Main extends javax.swing.JFrame {
             jb_nuevoAr.setEnabled(true);
             jb_abrirAr.setEnabled(true);
             rutaAbierto = "";
+            campos.clear();
+
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jmi_cerrarArchivoActionPerformed
@@ -631,12 +637,10 @@ public class Main extends javax.swing.JFrame {
         try {
             DefaultTableModel modelo = new DefaultTableModel();
             int size = campos.size();
-            //for (int i = 0; i < size; i++) {
             modelo.addColumn("Nombre");
             modelo.addColumn("Tipo");
             modelo.addColumn("longitud");
             modelo.addColumn("Llave primaria");
-            //}
             jt_campos.setModel(modelo);
             String[] c = new String[4];
             for (int i = 0; i < size; i++) {
@@ -935,12 +939,17 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_rb_modificarFMouseClicked
 
-    private void btn_SalidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SalidaMouseClicked
-        try {
-            System.exit(0);
-        } catch (Exception e) {
-        }
+    private void cb_tipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_tipoItemStateChanged
 
+        if(cb_tipo.getSelectedIndex()==0){
+            sp_size.setEnabled(false);
+        }else{
+            sp_size.setEnabled(true);
+        }
+    }//GEN-LAST:event_cb_tipoItemStateChanged
+
+    private void btn_SalidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SalidaMouseClicked
+        System.exit(0);
     }//GEN-LAST:event_btn_SalidaMouseClicked
 
     /**
