@@ -4,10 +4,12 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
@@ -529,7 +531,7 @@ public class Main extends javax.swing.JFrame {
             texto = campos.toString();
             escribir.append(texto);
             escribir.close();
-            
+
         } catch (Exception ex) {
         }
     }//GEN-LAST:event_jmi_guardarArchivoActionPerformed
@@ -583,29 +585,45 @@ public class Main extends javax.swing.JFrame {
     private void jb_abrirArMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_abrirArMouseClicked
         // TODO add your handling code here:
         try {
-            jb_nuevoAr.setEnabled(false);
-            jm_archivo.setEnabled(true);
-            jm_campos.setEnabled(true);
             JFileChooser abrir = new JFileChooser();
-            abrir.showSaveDialog(null);
-            abrir.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-
-            File archivo = abrir.getSelectedFile();
-
-            rutaAbierto = archivo.getPath(); //indicar que es el que se esta usando
-
-            AbrirArchivo(archivo);
+            FileFilter filtro = new FileNameExtensionFilter("Archivos de texto(.txt)", "txt");
+            abrir.setFileFilter(filtro);
+            int valor = abrir.showOpenDialog(abrir);
+            if (valor == JFileChooser.APPROVE_OPTION) {
+                jm_archivo.setEnabled(true);
+                jm_campos.setEnabled(true);
+                rutaAbierto = abrir.getSelectedFile().getPath();
+                abrirArchivo(rutaAbierto);
+            } else {
+                JOptionPane.showMessageDialog(this, "Archivo no seleccionado");
+            }
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jb_abrirArMouseClicked
 
-    public void AbrirArchivo(File archivo) {
-        File archivo_nuevo = new File(archivo.getPath());
-        FileWriter fw;
+    void abrirArchivo(String ruta) {
+        Scanner lea = null;
+        Scanner lea2 = null;
         try {
-            fw = new FileWriter(archivo_nuevo, true);
-            fw.append(campos.toString());
-            fw.close();
+            File archivo = new File(ruta);
+            lea = new Scanner(archivo);
+            String nombrec = "";
+            int tipo, longitud;
+            boolean llave = false;
+            lea.useDelimiter("|");
+            String texto = "";
+            while (lea.hasNext()) {
+                texto += lea.nextLine();
+            }
+            lea2 = new Scanner(texto);
+            lea2.useDelimiter(",");
+            while (lea2.hasNext()) {
+                nombrec = lea2.nextLine();
+                tipo = lea2.nextInt();
+                longitud = lea2.nextInt();
+                llave = lea2.hasNextInt();
+                campos.add(new Campo(nombrec, tipo, longitud, llave));
+            }
         } catch (Exception e) {
         }
     }
@@ -941,9 +959,9 @@ public class Main extends javax.swing.JFrame {
 
     private void cb_tipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_tipoItemStateChanged
 
-        if(cb_tipo.getSelectedIndex()==0){
+        if (cb_tipo.getSelectedIndex() == 0) {
             sp_size.setEnabled(false);
-        }else{
+        } else {
             sp_size.setEnabled(true);
         }
     }//GEN-LAST:event_cb_tipoItemStateChanged
