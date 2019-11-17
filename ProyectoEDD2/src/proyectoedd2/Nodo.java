@@ -15,13 +15,24 @@ public class Nodo {
 
     private ArrayList llaves = new ArrayList();
     private ArrayList<Nodo> children = new ArrayList();
+    private int nLlaves;
     private int T;
     private int t;
     private boolean Leaf;
 
     public Nodo(int orden) {
         this.T = orden;//orden del arbol
+        this.Leaf = true;
+        this.nLlaves = 0;
         this.t = (orden - 1) / 2;
+    }
+
+    public int getnLlaves() {
+        return nLlaves;
+    }
+
+    public void setnLlaves(int nLlaves) {
+        this.nLlaves = nLlaves;
     }
 
     public ArrayList getLlaves() {
