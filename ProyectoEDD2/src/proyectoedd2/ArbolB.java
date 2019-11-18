@@ -25,6 +25,12 @@ public class ArbolB {
 
     public void split(Nodo nodo_actual) {
         int orden = nodo_actual.getT()-1;
+        int cont=0;
+        if (nodo_actual.IsLeaf(true)) {
+            if (cont > nodo_actual.getnLlaves()) {
+                //entonces se hace el split
+            }
+        }
     }
 
 }
