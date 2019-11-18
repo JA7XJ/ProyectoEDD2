@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyectoedd2;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author josep
- */
 public class ArbolB {
 
     public void CrearNodo(int T) {
@@ -32,8 +23,8 @@ public class ArbolB {
         }
     }
 
-    public void split() {
-
+    public void split(Nodo nodo_actual) {
+        int orden = nodo_actual.getT()-1;
     }
 
 }
