@@ -23,6 +23,47 @@ public class ArbolB {
         }
     }
 
+    void insertar(Nodo T, int k) {
+        Nodo r = T;
+        if (r.getTt() == 2*6 - 1) {
+            Nodo s = null;
+            T = s;
+            s.setLeaf(false);
+            s.setChildren(r.getLlaves());
+            Metadata byteOFFset = null;
+            split(s, byteOFFset);
+            insertnofull(s, k);
+        }else{
+            insertnofull(T,k);
+        }
+    }
+
+    void insertnofull(Nodo x, int k) {
+        int i = x.getnLlaves();
+        if (x.isLeaf()) {
+            while (i >= 1 && k < (int)x.getLlaves().get(i)) {
+                x.getLlaves().set(i+1,x.getLlaves().get(i));
+                i = i - 1;
+            }
+            //x.getLlaves().get(i + 1) = k;
+            x.getLlaves().set(i+1, k);
+            x.setnLlaves(x.getnLlaves()+1);
+            while (i >= 1 && k < (int)x.getLlaves().get(i)) {
+                i = i - 1;
+            }
+            i = i + 1;
+            if (x.getChildren().size()==2*6-1) {
+                Metadata xx=null;
+                split(x, xx);
+                if (k > (int)x.getLlaves().get(i)) {
+                    i = i + 1;
+                }
+                insertnofull(x.getChildren().get(i), k);
+            }
+
+        }
+    }
+
     public void split(Nodo nodo_actual, Metadata value) {
         int orden = nodo_actual.getT() - 1;
         int num_llaves = orden;
