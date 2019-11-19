@@ -23,13 +23,29 @@ public class ArbolB {
         }
     }
 
-    public void split(Nodo nodo_actual) {
+    public void split(Nodo nodo_actual, Metadata value) {
         int orden = nodo_actual.getT()-1;
-        int cont=0;
+        int num_llaves = orden;
+//        Nodo left = null;
+//        Nodo middle = null;
+//        Nodo right = null;
+        ArrayList<Nodo> Temporal1 = new ArrayList();
+        ArrayList<Nodo> Temporal2 = new ArrayList();
+        ArrayList<Nodo> Temporal3 = new ArrayList();
         if (nodo_actual.IsLeaf(true)) {
-            if (cont > nodo_actual.getnLlaves()) {
-                //entonces se hace el split
-            }
+            //if ( > orden) {
+                for (int i = 0; i < orden+1; i++) {
+                    if (i == orden+1/2) {
+                        Temporal2.add(new Nodo(i)); //middle
+                    } 
+                    else if (i < orden+1/2) {
+                        Temporal1.add(new Nodo(i)); //left
+                    }
+                    else if (i > orden+1/2 && i < orden) {
+                        Temporal3.add(new Nodo(i)); //right
+                    }
+                }                                                
+            //}
         }
     }
 
