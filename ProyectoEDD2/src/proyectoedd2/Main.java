@@ -527,8 +527,12 @@ public class Main extends javax.swing.JFrame {
             FileWriter escribir = null;
             archivo = new File(rutaAbierto);
             escribir = new FileWriter(archivo);
-
-            texto = campos.toString();
+            texto += "|";
+            for (int i = 0; i < campos.size(); i++) {
+                //texto+=campos.get(i).toString();
+                texto += campos.get(i).getNombreCampo() + "," + campos.get(i).getTipo() + "," + campos.get(i).getLongitud() + "," + campos.get(i).isLlave() + "|";
+            }
+            //texto = campos.toString();
             escribir.append(texto);
             escribir.close();
 
@@ -539,6 +543,23 @@ public class Main extends javax.swing.JFrame {
     private void jmi_crearCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_crearCampoActionPerformed
         // Cre
         try {
+            if (campos.isEmpty()) {
+
+            } else {
+                boolean hay = false;
+                for (int i = 0; i < campos.size(); i++) {
+                    if (campos.get(i).isLlave()) {
+                        hay = true;
+                    }
+                }
+                if (hay) {
+                    rb_yes.setEnabled(false);
+                    rb_no.setEnabled(false);
+                } else {
+                    rb_yes.setEnabled(true);
+                    rb_no.setEnabled(true);
+                }
+            }
             sp_size.setEnabled(false);
             jd_crearC.setModal(true);
             jd_crearC.pack();
@@ -804,11 +825,16 @@ public class Main extends javax.swing.JFrame {
             }
             campos.add(new Campo(tf_nombrecampo.getText(), cb_tipo.getSelectedIndex(), (int) sp_size.getValue(), key));
             JOptionPane.showMessageDialog(jd_crearC, "Campo creado con exito");
-            jd_crearC.setVisible(false);
+            //jd_crearC.setVisible(false);
             tf_nombrecampo.setText("");
             cb_tipo.setSelectedIndex(0);
             sp_size.setValue(0);
-
+            for (int i = 0; i < campos.size(); i++) {
+                if (campos.get(i).isLlave()) {
+                    rb_yes.setEnabled(false);
+                    rb_no.setEnabled(false);
+                }
+            }
         } catch (Exception e) {
         }
     }//GEN-LAST:event_crearCMouseClicked
