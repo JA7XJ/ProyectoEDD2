@@ -25,10 +25,11 @@ public class ArbolB {
 
     void insertar(Nodo T, int k) {
         Nodo r = T;
-        if (r.getTt() == 2*6 - 1) {
+        if (r.getnLlaves() == T.getTt()) {
             Nodo s = null;
             T = s;
             s.setLeaf(false);
+            s.setnLlaves(0);
             s.setChildren(r.getLlaves());
             Metadata byteOFFset = null;
             split(s, byteOFFset);

@@ -632,7 +632,7 @@ public class Main extends javax.swing.JFrame {
     void abrirArchivo(String ruta) {
         campos.clear();
         Scanner lea = null;
-        Scanner lea2 = null;
+        //Scanner lea2 = null;
         try {
             File archivo = new File(ruta);
             lea = new Scanner(archivo);
