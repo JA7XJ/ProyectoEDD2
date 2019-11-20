@@ -544,7 +544,8 @@ public class Main extends javax.swing.JFrame {
         // Cre
         try {
             if (campos.isEmpty()) {
-
+                rb_yes.setSelected(false);
+                rb_no.setSelected(true);
             } else {
                 boolean hay = false;
                 for (int i = 0; i < campos.size(); i++) {
@@ -553,9 +554,13 @@ public class Main extends javax.swing.JFrame {
                     }
                 }
                 if (hay) {
+                    rb_yes.setSelected(false);
+                    rb_no.setSelected(true);
                     rb_yes.setEnabled(false);
                     rb_no.setEnabled(false);
                 } else {
+                    rb_yes.setSelected(false);
+                    rb_no.setSelected(true);
                     rb_yes.setEnabled(true);
                     rb_no.setEnabled(true);
                 }
@@ -576,13 +581,13 @@ public class Main extends javax.swing.JFrame {
             jb_abrirAr.setEnabled(false);
             //aqui crear archivo
             JFileChooser guardar = new JFileChooser();
-            //FileNameExtensionFilter filtro = new FileNameExtensionFilter(".txt","txt");
-            //guardar.setFileFilter(filtro);
+            FileFilter filtro = new FileNameExtensionFilter("Archivos de texto(.txt)", "txt");
+            guardar.setFileFilter(filtro);
             guardar.showSaveDialog(null);
-            guardar.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+            //guardar.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 
             File archivo = guardar.getSelectedFile();
-
+            //File archivo=new File(g)
             rutaAbierto = archivo.getPath(); //indicar que es el que se esta usando
 
             CrearArchivo(archivo);
@@ -592,7 +597,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_nuevoArMouseClicked
 
     void CrearArchivo(File archivo_nuevo) {
-        File archivo = new File(archivo_nuevo.getPath());
+        File archivo = new File(archivo_nuevo.getPath()+".txt");
         FileWriter fw;
         try {
             fw = new FileWriter(archivo, true);
@@ -831,6 +836,8 @@ public class Main extends javax.swing.JFrame {
             sp_size.setValue(0);
             for (int i = 0; i < campos.size(); i++) {
                 if (campos.get(i).isLlave()) {
+                    rb_yes.setSelected(false);
+                    rb_no.setSelected(true);
                     rb_yes.setEnabled(false);
                     rb_no.setEnabled(false);
                 }
