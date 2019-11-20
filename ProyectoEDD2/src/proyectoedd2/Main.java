@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -597,7 +598,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_nuevoArMouseClicked
 
     void CrearArchivo(File archivo_nuevo) {
-        File archivo = new File(archivo_nuevo.getPath()+".txt");
+        File archivo = new File(archivo_nuevo.getPath() + ".txt");
         FileWriter fw;
         try {
             fw = new FileWriter(archivo, true);
@@ -620,6 +621,7 @@ public class Main extends javax.swing.JFrame {
                 jm_campos.setEnabled(true);
                 rutaAbierto = abrir.getSelectedFile().getPath();
                 abrirArchivo(rutaAbierto);
+                jb_nuevoAr.setEnabled(false);
             } else {
                 JOptionPane.showMessageDialog(this, "Archivo no seleccionado");
             }
@@ -628,6 +630,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_abrirArMouseClicked
 
     void abrirArchivo(String ruta) {
+        campos.clear();
         Scanner lea = null;
         Scanner lea2 = null;
         try {
@@ -638,19 +641,35 @@ public class Main extends javax.swing.JFrame {
             boolean llave = false;
             lea.useDelimiter("|");
             String texto = "";
+            //lea2.useDelimiter(",");
             while (lea.hasNext()) {
                 texto += lea.nextLine();
+                StringTokenizer tokens = new StringTokenizer(texto, "|");
+                while (tokens.hasMoreTokens()) {
+                    //System.out.println(tokens.nextToken());
+                    String texto2 = tokens.nextToken();
+                    StringTokenizer tokens2 = new StringTokenizer(texto2, ",");
+                    //int c = 0, c2 = 0;
+                    while (tokens2.hasMoreTokens()) {
+//                        System.out.println(tokens2.nextToken());
+//                        System.out.println(c);
+//                        c=c+1;
+                        nombrec = tokens2.nextToken();
+                        tipo = Integer.parseInt(tokens2.nextToken());
+                        longitud = Integer.parseInt(tokens2.nextToken());
+                        if ("true".equals(tokens2.nextToken())) {
+                            llave = true;
+                        } else {
+                            llave = false;
+                        }
+                        campos.add(new Campo(nombrec, tipo, longitud, llave));
+                    }
+                }
             }
-            lea2 = new Scanner(texto);
-            lea2.useDelimiter(",");
-            while (lea2.hasNext()) {
-                nombrec = lea2.nextLine();
-                tipo = lea2.nextInt();
-                longitud = lea2.nextInt();
-                llave = lea2.hasNextInt();
-                campos.add(new Campo(nombrec, tipo, longitud, llave));
-            }
+            JOptionPane.showMessageDialog(this, "Archivo cargado con exito");
+            //System.out.println(texto);
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error, archivo de texto no compatible");
         }
     }
 
