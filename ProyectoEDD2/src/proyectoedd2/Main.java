@@ -526,17 +526,25 @@ public class Main extends javax.swing.JFrame {
             String texto = "";
             File archivo = null;
             FileWriter escribir = null;
-            archivo = new File(rutaAbierto);
-            escribir = new FileWriter(archivo);
+            if (Abrir) {
+                archivo = new File(rutaAbierto);
+                escribir = new FileWriter(archivo);
+            } else {
+                archivo = new File(rutaAbierto + ".txt");
+                escribir = new FileWriter(archivo);
+            }
+//            archivo = new File(rutaAbierto);
+//            escribir = new FileWriter(archivo);
             texto += "|";
             for (int i = 0; i < campos.size(); i++) {
                 //texto+=campos.get(i).toString();
                 texto += campos.get(i).getNombreCampo() + "," + campos.get(i).getTipo() + "," + campos.get(i).getLongitud() + "," + campos.get(i).isLlave() + "|";
             }
             //texto = campos.toString();
+//            rb_yes.setEnabled(true);
+//            rb_no.setEnabled(true);
             escribir.append(texto);
             escribir.close();
-
         } catch (Exception ex) {
         }
     }//GEN-LAST:event_jmi_guardarArchivoActionPerformed
@@ -579,6 +587,8 @@ public class Main extends javax.swing.JFrame {
         try {
             jm_archivo.setEnabled(true);
             jm_campos.setEnabled(true);
+            rb_yes.setEnabled(true);
+            rb_no.setEnabled(true);
             jb_abrirAr.setEnabled(false);
             //aqui crear archivo
             JFileChooser guardar = new JFileChooser();
@@ -590,8 +600,8 @@ public class Main extends javax.swing.JFrame {
             File archivo = guardar.getSelectedFile();
             //File archivo=new File(g)
             rutaAbierto = archivo.getPath(); //indicar que es el que se esta usando
-
-            CrearArchivo(archivo);
+            Abrir = false;
+            //CrearArchivo(archivo);
 
         } catch (Exception e) {
         }
@@ -622,6 +632,7 @@ public class Main extends javax.swing.JFrame {
                 rutaAbierto = abrir.getSelectedFile().getPath();
                 abrirArchivo(rutaAbierto);
                 jb_nuevoAr.setEnabled(false);
+                Abrir = true;
             } else {
                 JOptionPane.showMessageDialog(this, "Archivo no seleccionado");
             }
@@ -1114,5 +1125,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField tf_nombrecampo1;
     // End of variables declaration//GEN-END:variables
     ArrayList<Campo> campos = new ArrayList();
+    boolean Abrir;
     String rutaAbierto;
 }
