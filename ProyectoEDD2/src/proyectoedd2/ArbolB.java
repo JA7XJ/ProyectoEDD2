@@ -31,8 +31,8 @@ public class ArbolB {
             s.setLeaf(false);
             s.setnLlaves(0);
             s.setChildren(r.getLlaves());
-            Metadata byteOFFset = null;
-            split(s, byteOFFset);
+           // Metadata byteOFFset = null;
+            split(s);
             insertnofull(s, k);
         }else{
             insertnofull(T,k);
@@ -54,8 +54,8 @@ public class ArbolB {
             }
             i = i + 1;
             if (x.getChildren().size()==2*6-1) {
-                Metadata xx=null;
-                split(x, xx);
+                //Metadata xx=null;
+                split(x);
                 if (k > (int)x.getLlaves().get(i)) {
                     i = i + 1;
                 }
@@ -65,7 +65,7 @@ public class ArbolB {
         }
     }
 
-    public void split(Nodo nodo_actual, Metadata value) {
+    public void split(Nodo nodo_actual) {
         int orden = nodo_actual.getT() - 1;
         int num_llaves = orden;
         ArrayList<Nodo> Temporal1 = new ArrayList();
