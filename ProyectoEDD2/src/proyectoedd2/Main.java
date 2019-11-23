@@ -78,6 +78,19 @@ public class Main extends javax.swing.JFrame {
         jmi_modificarCampo = new javax.swing.JMenuItem();
         jmi_listarCampo = new javax.swing.JMenuItem();
         jmi_borrarCampos = new javax.swing.JMenuItem();
+        jm_registros = new javax.swing.JMenu();
+        jmi_introducirR = new javax.swing.JMenuItem();
+        jmi_modificarR = new javax.swing.JMenuItem();
+        jmi_buscarR = new javax.swing.JMenuItem();
+        jmi_borrarR = new javax.swing.JMenuItem();
+        jmi_listarR = new javax.swing.JMenuItem();
+        jmi_cruzar = new javax.swing.JMenuItem();
+        jm_indices = new javax.swing.JMenu();
+        jmi_crearI = new javax.swing.JMenuItem();
+        jmi_reIndexarA = new javax.swing.JMenuItem();
+        jm_utilidades = new javax.swing.JMenu();
+        jmi_exportarE = new javax.swing.JMenuItem();
+        jmi_exportarXML = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -479,6 +492,101 @@ public class Main extends javax.swing.JFrame {
 
         jMenuBar1.add(jm_campos);
 
+        jm_registros.setText("Registros");
+        jm_registros.setEnabled(false);
+
+        jmi_introducirR.setText("Introducir registros");
+        jmi_introducirR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_introducirRActionPerformed(evt);
+            }
+        });
+        jm_registros.add(jmi_introducirR);
+
+        jmi_modificarR.setText("Modificar registros");
+        jmi_modificarR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_modificarRActionPerformed(evt);
+            }
+        });
+        jm_registros.add(jmi_modificarR);
+
+        jmi_buscarR.setText("Buscar registros");
+        jmi_buscarR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_buscarRActionPerformed(evt);
+            }
+        });
+        jm_registros.add(jmi_buscarR);
+
+        jmi_borrarR.setText("Borrar registros");
+        jmi_borrarR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_borrarRActionPerformed(evt);
+            }
+        });
+        jm_registros.add(jmi_borrarR);
+
+        jmi_listarR.setText("Listar registros");
+        jmi_listarR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_listarRActionPerformed(evt);
+            }
+        });
+        jm_registros.add(jmi_listarR);
+
+        jmi_cruzar.setText("Cruzar archivos");
+        jmi_cruzar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_cruzarActionPerformed(evt);
+            }
+        });
+        jm_registros.add(jmi_cruzar);
+
+        jMenuBar1.add(jm_registros);
+
+        jm_indices.setText("Indices");
+        jm_indices.setEnabled(false);
+
+        jmi_crearI.setText("Crear Indices");
+        jmi_crearI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_crearIActionPerformed(evt);
+            }
+        });
+        jm_indices.add(jmi_crearI);
+
+        jmi_reIndexarA.setText("Re indexar Archivos");
+        jmi_reIndexarA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_reIndexarAActionPerformed(evt);
+            }
+        });
+        jm_indices.add(jmi_reIndexarA);
+
+        jMenuBar1.add(jm_indices);
+
+        jm_utilidades.setText("Utilidades");
+        jm_utilidades.setEnabled(false);
+
+        jmi_exportarE.setText("Exportar a Excel");
+        jmi_exportarE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_exportarEActionPerformed(evt);
+            }
+        });
+        jm_utilidades.add(jmi_exportarE);
+
+        jmi_exportarXML.setText("Exportar a XML con Schema");
+        jmi_exportarXML.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_exportarXMLActionPerformed(evt);
+            }
+        });
+        jm_utilidades.add(jmi_exportarXML);
+
+        jMenuBar1.add(jm_utilidades);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -587,6 +695,9 @@ public class Main extends javax.swing.JFrame {
         try {
             jm_archivo.setEnabled(true);
             jm_campos.setEnabled(true);
+            jm_registros.setEnabled(true);
+            jm_indices.setEnabled(true);
+            jm_utilidades.setEnabled(true);
             rb_yes.setEnabled(true);
             rb_no.setEnabled(true);
             jb_abrirAr.setEnabled(false);
@@ -602,7 +713,6 @@ public class Main extends javax.swing.JFrame {
             rutaAbierto = archivo.getPath(); //indicar que es el que se esta usando
             Abrir = false;
             //CrearArchivo(archivo);
-
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jb_nuevoArMouseClicked
@@ -629,6 +739,9 @@ public class Main extends javax.swing.JFrame {
             if (valor == JFileChooser.APPROVE_OPTION) {
                 jm_archivo.setEnabled(true);
                 jm_campos.setEnabled(true);
+                jm_registros.setEnabled(true);
+                jm_indices.setEnabled(true);
+                jm_utilidades.setEnabled(true);
                 rutaAbierto = abrir.getSelectedFile().getPath();
                 abrirArchivo(rutaAbierto);
                 jb_nuevoAr.setEnabled(false);
@@ -697,11 +810,13 @@ public class Main extends javax.swing.JFrame {
         try {
             jm_archivo.setEnabled(false);
             jm_campos.setEnabled(false);
+            jm_registros.setEnabled(false);
+            jm_indices.setEnabled(false);
+            jm_utilidades.setEnabled(false);
             jb_nuevoAr.setEnabled(true);
             jb_abrirAr.setEnabled(true);
             rutaAbierto = "";
             campos.clear();
-
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jmi_cerrarArchivoActionPerformed
@@ -1033,6 +1148,46 @@ public class Main extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btn_SalidaMouseClicked
 
+    private void jmi_modificarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_modificarRActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmi_modificarRActionPerformed
+
+    private void jmi_exportarXMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_exportarXMLActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmi_exportarXMLActionPerformed
+
+    private void jmi_exportarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_exportarEActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmi_exportarEActionPerformed
+
+    private void jmi_crearIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_crearIActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmi_crearIActionPerformed
+
+    private void jmi_reIndexarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_reIndexarAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmi_reIndexarAActionPerformed
+
+    private void jmi_introducirRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_introducirRActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmi_introducirRActionPerformed
+
+    private void jmi_buscarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_buscarRActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmi_buscarRActionPerformed
+
+    private void jmi_borrarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_borrarRActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmi_borrarRActionPerformed
+
+    private void jmi_listarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_listarRActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmi_listarRActionPerformed
+
+    private void jmi_cruzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_cruzarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmi_cruzarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1104,12 +1259,25 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JDialog jd_modificarC;
     private javax.swing.JMenu jm_archivo;
     private javax.swing.JMenu jm_campos;
+    private javax.swing.JMenu jm_indices;
+    private javax.swing.JMenu jm_registros;
+    private javax.swing.JMenu jm_utilidades;
     private javax.swing.JMenuItem jmi_borrarCampos;
+    private javax.swing.JMenuItem jmi_borrarR;
+    private javax.swing.JMenuItem jmi_buscarR;
     private javax.swing.JMenuItem jmi_cerrarArchivo;
     private javax.swing.JMenuItem jmi_crearCampo;
+    private javax.swing.JMenuItem jmi_crearI;
+    private javax.swing.JMenuItem jmi_cruzar;
+    private javax.swing.JMenuItem jmi_exportarE;
+    private javax.swing.JMenuItem jmi_exportarXML;
     private javax.swing.JMenuItem jmi_guardarArchivo;
+    private javax.swing.JMenuItem jmi_introducirR;
     private javax.swing.JMenuItem jmi_listarCampo;
+    private javax.swing.JMenuItem jmi_listarR;
     private javax.swing.JMenuItem jmi_modificarCampo;
+    private javax.swing.JMenuItem jmi_modificarR;
+    private javax.swing.JMenuItem jmi_reIndexarA;
     private javax.swing.JTable jt_borrarC;
     private javax.swing.JTable jt_campos;
     private javax.swing.JTable jt_modificarC;
