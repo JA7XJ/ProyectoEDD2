@@ -75,9 +75,9 @@ public class ArbolB {
             for (int i = 0; i < orden + 1; i++) {
                 if (i == orden + 1 / 2) {
                     Temporal2.add(new Nodo(nodo_actual.getChildren().indexOf(i))); //middle
+                    nodo_actual = Temporal2.get(i); //Aqui asigno al nodo padre el valor padre
                 } else if (i < orden + 1 / 2) {
-                    Temporal1.add(new Nodo(nodo_actual.getChildren().indexOf(i))); //left
-                    nodo_actual = Temporal1.get(i);
+                    Temporal1.add(new Nodo(nodo_actual.getChildren().indexOf(i))); //left                
                 } else if (i > orden + 1 / 2 && i < orden) {
                     Temporal3.add(new Nodo(nodo_actual.getChildren().indexOf(i))); //right
                 }
