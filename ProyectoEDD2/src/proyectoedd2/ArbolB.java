@@ -1,62 +1,78 @@
 package proyectoedd2;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ArbolB {
+    
+    private Nodo raiz=null;
 
+    public ArbolB() {
+        Nodo raiz=new Nodo(6);
+    }
+
+    public Nodo getRaiz() {
+        return raiz;
+    }
+    
     public void CrearNodo(int T) {
         Nodo n = new Nodo(T);
     }
 
-    public int buscar(ArrayList<Nodo> x, int llave) {
-        int i = 1;
-        while (i <= ((int) x.get(i).getLlaves().get(i)) && llave > ((int) x.get(i).getLlaves().get(i))) {
+    public int buscar(Nodo x, int llave) {
+        int i = 0;
+        //while (i <= ((int) x.get(i).getLlaves().get(i)) && llave > ((int) x.get(i).getLlaves().get(i))) {
+        while (i < ((int) x.getLlaves().size()) && llave > ((int) x.getLlaves().get(i))) {
             i = i + 1;
         }
-        if (i <= ((int) x.get(i).getLlaves().get(i)) && llave == ((int) x.get(i).getLlaves().get(i))) {
-            return (((int) x.get(i).getLlaves().get(i)));
+        //if (i <= ((int) x.get(i).getLlaves().get(i)) && llave == ((int) x.get(i).getLlaves().get(i))) {
+        if (i < ((int) x.getLlaves().size()) && llave == ((int) x.getLlaves().get(i))) {
+            //return (((int) x.get(i).getLlaves().get(i)));
+            return (i);
         }
-        if (x.get(i).isLeaf()) {
+        if (x.isLeaf()) {
             return 0;
         } else {
-            return buscar(x.get(i).getChildren(), llave);
+            return buscar(x.getChildren().get(i), llave);
         }
     }
 
     void insertar(Nodo T, int k) {
         Nodo r = T;
+        Collections.sort(T.getLlaves());
         if (r.getnLlaves() == T.getTt()) {
-            Nodo s = null;
+            Nodo s = new Nodo(6);
             T = s;
             s.setLeaf(false);
             s.setnLlaves(0);
-            s.setChildren(r.getLlaves());
-           // Metadata byteOFFset = null;
+            s.setChildren(r.getChildren());
+            // Metadata byteOFFset = null;
             split(s);
             insertnofull(s, k);
-        }else{
-            insertnofull(T,k);
+        } else {
+            insertnofull(T, k);
+            Collections.sort(T.getLlaves());
         }
     }
 
     void insertnofull(Nodo x, int k) {
         int i = x.getnLlaves();
         if (x.isLeaf()) {
-            while (i >= 1 && k < (int)x.getLlaves().get(i)) {
-                x.getLlaves().set(i+1,x.getLlaves().get(i));
+            while (i > 0 && k < (int) x.getLlaves().get(i)) {
+                x.getLlaves().set(i + 1, x.getLlaves().get(i));
                 i = i - 1;
             }
             //x.getLlaves().get(i + 1) = k;
-            x.getLlaves().set(i+1, k);
-            x.setnLlaves(x.getnLlaves()+1);
-            while (i >= 1 && k < (int)x.getLlaves().get(i)) {
+            x.getLlaves().set(i + 1, k);
+            x.setnLlaves(x.getnLlaves() + 1);
+            while (i > 0 && k < (int) x.getLlaves().get(i)) {
                 i = i - 1;
             }
             i = i + 1;
-            if (x.getChildren().size()==2*6-1) {
+            if (x.getChildren().size() == 6-1/2) {
                 //Metadata xx=null;
                 split(x);
-                if (k > (int)x.getLlaves().get(i)) {
+                if (k > (int) x.getLlaves().get(i)) {
                     i = i + 1;
                 }
                 insertnofull(x.getChildren().get(i), k);
@@ -65,8 +81,8 @@ public class ArbolB {
         }
     }
 
-    public void split(Nodo nodo_actual) {
-        int orden = nodo_actual.getT() - 1;
+    /*public void split(Nodo nodo_actual) {
+        int orden = nodo_actual.getTt();
         int num_llaves = orden;
         ArrayList<Nodo> Temporal1 = new ArrayList();
         ArrayList<Nodo> Temporal2 = new ArrayList();
@@ -83,6 +99,42 @@ public class ArbolB {
                 }
             }
         }
+        
+    }*/
+    public void split(Nodo x) {
+        int orden = x.getTt();
+        int T = x.getT();
+        Nodo top = x;
+        Nodo left = new Nodo(x.getT());
+        Nodo right = new Nodo(x.getT());
+        int mitad = 1 + x.getLlaves().size() - 1 / 2;
+        for (int i = 0; i < x.getLlaves().size(); i++) {
+            if (i < mitad) {
+                left.getLlaves().add(x.getLlaves().get(i));
+            }
+            if (i > mitad) {
+                right.getLlaves().add(x.getLlaves().get(i));
+            }
+        }
+//        for (int i = 0; i < x.getChildren().size(); i++) {
+//            if (i <= mitad) {
+//                left.getChildren().add(x.getChildren().get(i));
+//            } else {
+//                right.getChildren().add(x.getChildren().get(i));
+//            }
+//        }
+        if (top==null) {
+            top=new Nodo(T);
+            Collections.sort(top.getLlaves());
+            top.getChildren().add(left);
+            top.getChildren().add(right);
+        }else{
+            Collections.sort(top.getLlaves());
+            top.getChildren().add(left);
+            top.getChildren().add(right);
+        }
     }
-
+    /*
+    
+    */
 }
