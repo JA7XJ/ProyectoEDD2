@@ -1,20 +1,32 @@
 package proyectoedd2;
 
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class ArbolB {
-    
-    private Nodo raiz=null;
+
+    private Nodo raiz = null;
+    private File archivo = null;
 
     public ArbolB() {
-        Nodo raiz=new Nodo(6);
+        Nodo raiz = new Nodo(6);
+    }
+
+    public ArbolB(String ruta) {
+        archivo = new File(ruta);
+        Nodo raiz = new Nodo(6);
     }
 
     public Nodo getRaiz() {
         return raiz;
     }
-    
+
     public void CrearNodo(int T) {
         Nodo n = new Nodo(T);
     }
@@ -69,15 +81,15 @@ public class ArbolB {
                 i = i - 1;
             }
             i = i + 1;
-            if (x.getChildren().size() == 6-1/2) {
+            if (x.getChildren().get(i).getLlaves().size() == 6 - 1 / 2) {
                 //Metadata xx=null;
-                split(x);
+                split(x.getChildren().get(i));
                 if (k > (int) x.getLlaves().get(i)) {
                     i = i + 1;
                 }
-                insertnofull(x.getChildren().get(i), k);
+//                insertnofull(x.getChildren().get(i), k);
             }
-
+            insertnofull(x.getChildren().get(i), k);
         }
     }
 
@@ -123,18 +135,61 @@ public class ArbolB {
 //                right.getChildren().add(x.getChildren().get(i));
 //            }
 //        }
-        if (top==null) {
-            top=new Nodo(T);
+        if (top == null) {
+            top = new Nodo(T);
             Collections.sort(top.getLlaves());
             top.getChildren().add(left);
             top.getChildren().add(right);
-        }else{
+        } else {
             Collections.sort(top.getLlaves());
             top.getChildren().add(left);
             top.getChildren().add(right);
         }
     }
+
+//    public void escribirArbol() {
+//        FileOutputStream fw = null;
+//        ObjectOutputStream bw = null;
+//        try {
+//            fw = new FileOutputStream(archivo);
+//            bw = new ObjectOutputStream(fw);
+//            for (Alumno t : listaAlumnos) {
+//                bw.writeObject(t);
+//            }
+//            bw.flush();
+//        } catch (Exception ex) {
+//        } finally {
+//            try {
+//                bw.close();
+//                fw.close();
+//            } catch (Exception ex) {
+//            }
+//        }
+//    }
+//
+//    public void leerArbol() {
+//        try {
+//
+//            if (archivo.exists()) {
+//                FileInputStream entrada
+//                        = new FileInputStream(archivo);
+//                ObjectInputStream objeto
+//                        = new ObjectInputStream(entrada);
+//                try {
+//                    while ((temp = () objeto.readObject()) != null) {
+//                        listaAlumnos.add(temp);
+//                    }
+//                } catch (EOFException e) {
+//                    //encontro el final del archivo
+//                }
+//                objeto.close();
+//                entrada.close();
+//            }
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
+//    }
     /*
     
-    */
+     */
 }

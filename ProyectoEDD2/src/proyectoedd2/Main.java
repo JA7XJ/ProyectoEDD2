@@ -1,8 +1,13 @@
 package proyectoedd2;
 
+import java.io.EOFException;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -744,6 +749,7 @@ public class Main extends javax.swing.JFrame {
                 jm_utilidades.setEnabled(true);
                 rutaAbierto = abrir.getSelectedFile().getPath();
                 abrirArchivo(rutaAbierto);
+                leerArbol();
                 jb_nuevoAr.setEnabled(false);
                 Abrir = true;
             } else {
@@ -1166,8 +1172,58 @@ public class Main extends javax.swing.JFrame {
 
     private void jmi_reIndexarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_reIndexarAActionPerformed
         // TODO add your handling code here:
+        try {
+            escribirArbol();
+            leerArbol();
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_jmi_reIndexarAActionPerformed
+    public void escribirArbol() {
+        FileOutputStream fw = null;
+        ObjectOutputStream bw = null;
+        File archivo = new File(rutaAbierto);
+        try {
+            fw = new FileOutputStream(archivo);
+            bw = new ObjectOutputStream(fw);
+            //for (Alumno t : listaAlumnos) {
+            bw.writeObject(tree.getRaiz());
+            //}
+            bw.flush();
+        } catch (Exception ex) {
+        } finally {
+            try {
+                bw.close();
+                fw.close();
+            } catch (Exception ex) {
+            }
+        }
+    }
 
+    public void leerArbol() {
+        try {
+            File archivo = new File(rutaAbierto);
+//            ArbolB tree=new ArbolB();
+//            Nodo raiz=new Nodo(6);
+            if (archivo.exists()) {
+                FileInputStream entrada
+                        = new FileInputStream(archivo);
+                ObjectInputStream objeto
+                        = new ObjectInputStream(entrada);
+                try {
+                    Object temp;
+                    while ((temp = objeto.readObject()) != null) {
+                        tree.insertar(raiz, (int) temp);
+                    }
+                } catch (EOFException e) {
+                    //encontro el final del archivo
+                }
+                objeto.close();
+                entrada.close();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
     private void jmi_introducirRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_introducirRActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jmi_introducirRActionPerformed
@@ -1294,5 +1350,7 @@ public class Main extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     ArrayList<Campo> campos = new ArrayList();
     boolean Abrir;
+    Nodo raiz = new Nodo(6);
     String rutaAbierto;
+    ArbolB tree = new ArbolB();
 }
