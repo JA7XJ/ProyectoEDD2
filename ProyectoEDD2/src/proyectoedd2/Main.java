@@ -1181,7 +1181,7 @@ public class Main extends javax.swing.JFrame {
     public void escribirArbol() {
         FileOutputStream fw = null;
         ObjectOutputStream bw = null;
-        File archivo = new File(rutaAbierto);
+        File archivo = new File(rutaAbierto+".tree");
         try {
             fw = new FileOutputStream(archivo);
             bw = new ObjectOutputStream(fw);
@@ -1201,7 +1201,7 @@ public class Main extends javax.swing.JFrame {
 
     public void leerArbol() {
         try {
-            File archivo = new File(rutaAbierto);
+            File archivo = new File(rutaAbierto+".tree");
 //            ArbolB tree=new ArbolB();
 //            Nodo raiz=new Nodo(6);
             if (archivo.exists()) {
