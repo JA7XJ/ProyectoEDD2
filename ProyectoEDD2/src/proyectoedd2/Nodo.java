@@ -10,7 +10,7 @@ public class Nodo {
     private int T;
     private int t;
     private boolean Leaf;
-
+    
     public Nodo(int orden) {
         this.T = orden;//orden del arbol
         this.Leaf = true;
