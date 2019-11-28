@@ -1,9 +1,11 @@
 package proyectoedd2;
 
+import java.io.BufferedReader;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -748,7 +750,8 @@ public class Main extends javax.swing.JFrame {
                 jm_indices.setEnabled(true);
                 jm_utilidades.setEnabled(true);
                 rutaAbierto = abrir.getSelectedFile().getPath();
-                abrirArchivo(rutaAbierto);
+                abrirArchivoCampos(rutaAbierto);
+                abrirArchivoRegistros(rutaAbierto);
                 leerArbol();
                 jb_nuevoAr.setEnabled(false);
                 Abrir = true;
@@ -759,41 +762,76 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb_abrirArMouseClicked
 
-    void abrirArchivo(String ruta) {
+    void abrirArchivoRegistros(String ruta) throws IOException {
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+        try {
+            //archivo = new File("c:/Files/prueba.txt");
+            archivo = new File(ruta); //cualquier ruta
+            fr = new FileReader(archivo); //apunta al archivo
+            br = new BufferedReader(fr); //apunta al canal
+            String texto = "", texto2 = "";
+            int c = 0;
+            while ((texto = br.readLine()) != null) {  //leer archivo de texto            
+                if (c > 0) {
+                    texto2 += texto;
+                }
+                c++;
+            }
+            StringTokenizer tokens = new StringTokenizer(texto2, "|");
+            while (tokens.hasMoreTokens()) {
+                elementos.add(tokens.nextToken());
+            }
+        } catch (Exception e) {
+        }
+        br.close();
+        fr.close();
+    }
+
+    void abrirArchivoCampos(String ruta) throws IOException {
         campos.clear();
         Scanner lea = null;
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
         //Scanner lea2 = null;
         try {
-            File archivo = new File(ruta);
+//            File archivo = new File(ruta);
+            archivo = new File(ruta); //cualquier ruta
+            fr = new FileReader(archivo); //apunta al archivo
+            br = new BufferedReader(fr); //apunta al canalF
             lea = new Scanner(archivo);
             String nombrec = "";
             int tipo, longitud;
             boolean llave = false;
             lea.useDelimiter("|");
-            String texto = "";
-            //lea2.useDelimiter(",");
-            while (lea.hasNext()) {
-                texto += lea.nextLine();
-                StringTokenizer tokens = new StringTokenizer(texto, "|");
-                while (tokens.hasMoreTokens()) {
-                    //System.out.println(tokens.nextToken());
-                    String texto2 = tokens.nextToken();
-                    StringTokenizer tokens2 = new StringTokenizer(texto2, ",");
-                    //int c = 0, c2 = 0;
-                    while (tokens2.hasMoreTokens()) {
+            String texto = "", texto2 = "";
+            int c = 0;
+            while ((texto = br.readLine()) != null) {  //leer archivo de texto            
+                if (c == 0) {
+                    texto2 += texto;
+                }
+                c++;
+            }
+            StringTokenizer tokens = new StringTokenizer(texto2, "|");
+            while (tokens.hasMoreTokens()) {
+                String texto3 = tokens.nextToken();
+                StringTokenizer tokens2 = new StringTokenizer(texto3, ",");
+                //int c = 0, c2 = 0;
+                while (tokens2.hasMoreTokens()) {
 //                        System.out.println(tokens2.nextToken());
 //                        System.out.println(c);
 //                        c=c+1;
-                        nombrec = tokens2.nextToken();
-                        tipo = Integer.parseInt(tokens2.nextToken());
-                        longitud = Integer.parseInt(tokens2.nextToken());
-                        if ("true".equals(tokens2.nextToken())) {
-                            llave = true;
-                        } else {
-                            llave = false;
-                        }
-                        campos.add(new Campo(nombrec, tipo, longitud, llave));
+                    nombrec = tokens2.nextToken();
+                    tipo = Integer.parseInt(tokens2.nextToken());
+                    longitud = Integer.parseInt(tokens2.nextToken());
+                    if ("true".equals(tokens2.nextToken())) {
+                        llave = true;
+                    } else {
+                        llave = false;
                     }
+                    campos.add(new Campo(nombrec, tipo, longitud, llave));
                 }
             }
             JOptionPane.showMessageDialog(this, "Archivo cargado con exito");
@@ -801,6 +839,8 @@ public class Main extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error, archivo de texto no compatible");
         }
+        br.close();
+        fr.close();
     }
 
     private void jb_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_exitMouseClicked
@@ -1181,7 +1221,7 @@ public class Main extends javax.swing.JFrame {
     public void escribirArbol() {
         FileOutputStream fw = null;
         ObjectOutputStream bw = null;
-        File archivo = new File(rutaAbierto+".tree");
+        File archivo = new File(rutaAbierto + ".tree");
         try {
             fw = new FileOutputStream(archivo);
             bw = new ObjectOutputStream(fw);
@@ -1201,7 +1241,7 @@ public class Main extends javax.swing.JFrame {
 
     public void leerArbol() {
         try {
-            File archivo = new File(rutaAbierto+".tree");
+            File archivo = new File(rutaAbierto + ".tree");
 //            ArbolB tree=new ArbolB();
 //            Nodo raiz=new Nodo(6);
             if (archivo.exists()) {
@@ -1238,6 +1278,12 @@ public class Main extends javax.swing.JFrame {
 
     private void jmi_listarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_listarRActionPerformed
         // TODO add your handling code here:
+        try {
+            for (int i = 0; i < elementos.size(); i++) {
+                System.out.println(elementos.get(i).toString());
+            }
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_jmi_listarRActionPerformed
 
     private void jmi_cruzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_cruzarActionPerformed
@@ -1349,6 +1395,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField tf_nombrecampo1;
     // End of variables declaration//GEN-END:variables
     ArrayList<Campo> campos = new ArrayList();
+    ArrayList elementos = new ArrayList();
     boolean Abrir;
     Nodo raiz = new Nodo(6);
     String rutaAbierto;

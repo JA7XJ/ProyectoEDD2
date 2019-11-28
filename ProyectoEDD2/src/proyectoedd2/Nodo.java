@@ -75,4 +75,29 @@ public class Nodo {
             return Leaf;
         }
     }
+    //lea2.useDelimiter(",");
+//            while (lea.hasNext()) {
+//                texto += lea.nextLine();
+//                StringTokenizer tokens = new StringTokenizer(texto, "|");
+//                while (tokens.hasMoreTokens()) {
+//                    //System.out.println(tokens.nextToken());
+//                    String texto2 = tokens.nextToken();
+//                    StringTokenizer tokens2 = new StringTokenizer(texto2, ",");
+//                    //int c = 0, c2 = 0;
+//                    while (tokens2.hasMoreTokens()) {
+////                        System.out.println(tokens2.nextToken());
+////                        System.out.println(c);
+////                        c=c+1;
+//                        nombrec = tokens2.nextToken();
+//                        tipo = Integer.parseInt(tokens2.nextToken());
+//                        longitud = Integer.parseInt(tokens2.nextToken());
+//                        if ("true".equals(tokens2.nextToken())) {
+//                            llave = true;
+//                        } else {
+//                            llave = false;
+//                        }
+//                        campos.add(new Campo(nombrec, tipo, longitud, llave));
+//                    }
+//                }
+//            }
 }
