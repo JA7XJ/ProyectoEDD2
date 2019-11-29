@@ -78,6 +78,12 @@ public class Main extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         atras = new javax.swing.JButton();
         adelante = new javax.swing.JButton();
+        jd_insertarR = new javax.swing.JDialog();
+        jLabel15 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jt_introR = new javax.swing.JTable();
+        jb_introD = new javax.swing.JButton();
+        jb_introR = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jb_nuevoAr = new javax.swing.JButton();
         jb_abrirAr = new javax.swing.JButton();
@@ -485,6 +491,70 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(atras)
                     .addComponent(adelante))
                 .addContainerGap(14, Short.MAX_VALUE))
+        );
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel15.setText("Introducir Registro");
+
+        jt_introR.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jt_introR.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane5.setViewportView(jt_introR);
+
+        jb_introD.setText("Introducir dato");
+        jb_introD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_introDMouseClicked(evt);
+            }
+        });
+
+        jb_introR.setText("Introducir registro");
+        jb_introR.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_introRMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_insertarRLayout = new javax.swing.GroupLayout(jd_insertarR.getContentPane());
+        jd_insertarR.getContentPane().setLayout(jd_insertarRLayout);
+        jd_insertarRLayout.setHorizontalGroup(
+            jd_insertarRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_insertarRLayout.createSequentialGroup()
+                .addGroup(jd_insertarRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_insertarRLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE))
+                    .addGroup(jd_insertarRLayout.createSequentialGroup()
+                        .addGroup(jd_insertarRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jd_insertarRLayout.createSequentialGroup()
+                                .addGap(125, 125, 125)
+                                .addComponent(jLabel15))
+                            .addGroup(jd_insertarRLayout.createSequentialGroup()
+                                .addGap(119, 119, 119)
+                                .addComponent(jb_introD)
+                                .addGap(29, 29, 29)
+                                .addComponent(jb_introR)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jd_insertarRLayout.setVerticalGroup(
+            jd_insertarRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_insertarRLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jd_insertarRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jb_introD)
+                    .addComponent(jb_introR))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1364,6 +1434,50 @@ public class Main extends javax.swing.JFrame {
     }
     private void jmi_introducirRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_introducirRActionPerformed
         // TODO add your handling code here:
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            int size = campos.size();
+            //for (int i = 0; i < size; i++) {
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Tipo");
+            modelo.addColumn("longitud");
+            modelo.addColumn("Llave primaria");
+            modelo.addColumn("Dato");
+            //}
+            jt_modificarC.setModel(modelo);
+            String[] c = new String[5];
+            for (int i = 0; i < size; i++) {
+                c[0] = campos.get(i).getNombreCampo();
+                String tipo = "";
+                if (campos.get(i).getTipo() == 0) {
+                    tipo = "int";
+                }
+                if (campos.get(i).getTipo() == 1) {
+                    tipo = "String";
+                }
+                if (campos.get(i).getTipo() == 2) {
+                    tipo = "double";
+                }
+                if (campos.get(i).getTipo() == 3) {
+                    tipo = "char";
+                }
+                c[1] = tipo;
+                c[2] = Integer.toString(campos.get(i).getLongitud());
+                if (campos.get(i).isLlave() == false) {
+                    c[3] = "No";
+                } else {
+                    c[3] = "Si";
+                }
+                c[4] = "";
+                modelo.addRow(c);
+            }
+            jt_introR.setModel(modelo);
+            jd_insertarR.setModal(true);
+            jd_insertarR.pack();
+            jd_insertarR.setLocationRelativeTo(this);
+            jd_insertarR.setVisible(true);
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_jmi_introducirRActionPerformed
 
     private void jmi_buscarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_buscarRActionPerformed
@@ -1452,6 +1566,85 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_atrasMouseClicked
 
+    private void jb_introDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_introDMouseClicked
+        // TODO add your handling code here:
+        try {
+            if (jt_introR.getSelectedRow() >= 0) {
+//                campos.get(jt_modificarC.getSelectedRow()).setNombreCampo(tf_nombrecampo1.getText());
+//                campos.get(jt_modificarC.getSelectedRow()).setTipo(cb_tipo1.getSelectedIndex());
+//                campos.get(jt_modificarC.getSelectedRow()).setLongitud((int) sp_size1.getValue());
+                if (jt_introR.getValueAt(jt_introR.getSelectedRow(), 1) == "int") {
+                    int dato = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese el dato tipo int"));
+                    jt_introR.setValueAt(Integer.toString(dato), jt_introR.getSelectedRow(), 4);
+                }
+                if (jt_introR.getValueAt(jt_introR.getSelectedRow(), 1) == "String") {
+                    String dato = JOptionPane.showInputDialog(this, "Ingrese el dato tipo String");
+                    if (dato.length() > Integer.parseInt((String) jt_introR.getValueAt(jt_introR.getSelectedRow(), 2))) {
+                        JOptionPane.showMessageDialog(this, "error, el String es muy grande");
+                    } else {
+                        jt_introR.setValueAt(dato, jt_introR.getSelectedRow(), 4);
+                    }
+                }
+                if (jt_introR.getValueAt(jt_introR.getSelectedRow(), 1) == "double") {
+                    double dato = Double.parseDouble(JOptionPane.showInputDialog(this, "Ingrese el dato tipo double"));
+                    jt_introR.setValueAt(dato, jt_introR.getSelectedRow(), 4);
+                }
+                if (jt_introR.getValueAt(jt_introR.getSelectedRow(), 1) == "char") {
+                    String origen = JOptionPane.showInputDialog(this, "Ingrese el dato tipo char");
+                    if (origen.length() > 0) {
+                        JOptionPane.showMessageDialog(this, "Error, este dato no es un char");
+                    } else {
+                        char dato = origen.charAt(0);
+                        jt_introR.setValueAt(dato, jt_introR.getSelectedRow(), 4);
+                    }
+                    //char dato=JOptionPane.showInputDialog(this, "Ingrese el dato tipo char");
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error, dato incorrecto ingresado");
+        }
+    }//GEN-LAST:event_jb_introDMouseClicked
+
+    private void jb_introRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_introRMouseClicked
+        // TODO add your handling code here:
+        try {
+            int size = jt_introR.getRowCount();
+            boolean probar = false;
+            for (int i = 0; i < size; i++) {
+                if (jt_introR.getValueAt(i, 0) == "") {
+                    probar = true;
+                }
+            }
+            if (probar == true) {
+                JOptionPane.showMessageDialog(this, "Error, por favor llene todos los campos");
+            } else {
+                for (int i = 0; i < size; i++) {
+                    elementos.add(jt_introR.getValueAt(i, 4));
+//                    elementos.add(jt_introR.getValueAt(i, 4));
+//                    elementos.add(jt_introR.getValueAt(i, 4));
+//                    elementos.add(jt_introR.getValueAt(i, 4));
+//                    elementos.add(jt_introR.getValueAt(i, 4));
+                }
+                JOptionPane.showMessageDialog(this, "Registro agregado con exito");
+                for (int i = 0; i < size; i++) {
+                    jt_introR.setValueAt("", i, 4);
+                }
+            }
+//            for (int i = 0; i < size; i++) {
+//                elementos.add(jt_introR.getValueAt(i, 0));
+//                elementos.add(jt_introR.getValueAt(i, 1));
+//                elementos.add(jt_introR.getValueAt(i, 2));
+//                elementos.add(jt_introR.getValueAt(i, 3));
+//                elementos.add(jt_introR.getValueAt(i, 4));
+//            }
+//            JOptionPane.showMessageDialog(this, "Registro agregado con exito");
+//            for (int i = 0; i < size; i++) {
+//                jt_introR.setValueAt("", i, 4);
+//            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jb_introRMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1501,6 +1694,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1517,11 +1711,15 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JButton jb_abrirAr;
     private javax.swing.JButton jb_borrarC;
+    private javax.swing.JButton jb_introD;
+    private javax.swing.JButton jb_introR;
     private javax.swing.JButton jb_nuevoAr;
     private javax.swing.JDialog jd_borrarC;
     private javax.swing.JDialog jd_crearC;
+    private javax.swing.JDialog jd_insertarR;
     private javax.swing.JDialog jd_listarRegistros;
     private javax.swing.JDialog jd_listarc;
     private javax.swing.JDialog jd_modi;
@@ -1549,6 +1747,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmi_reIndexarA;
     private javax.swing.JTable jt_borrarC;
     private javax.swing.JTable jt_campos;
+    private javax.swing.JTable jt_introR;
     private javax.swing.JTable jt_listaR;
     private javax.swing.JTable jt_modificarC;
     private javax.swing.JButton rb_modi;
