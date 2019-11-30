@@ -797,6 +797,24 @@ public class Main extends javax.swing.JFrame {
                 //texto+=campos.get(i).toString();
                 texto += campos.get(i).getNombreCampo() + "," + campos.get(i).getTipo() + "," + campos.get(i).getLongitud() + "," + campos.get(i).isLlave() + "|";
             }
+            texto+="\n|";
+            int cc = 0;
+            for (int i = 0; i < elementos.size(); i++) {
+                if (cc < campos.size()) {
+                    texto+=elementos.get(i)+"|";
+                }
+                cc++;
+                if (cc == campos.size()) {
+                    texto+="\n";
+                    cc = 0;
+                    if (i==elementos.size()-1) {
+                        
+                    }else{
+                        texto+="|";
+                    }
+                    //System.out.println("y");
+                }
+            }
             //texto = campos.toString();
 //            rb_yes.setEnabled(true);
 //            rb_no.setEnabled(true);
