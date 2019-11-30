@@ -797,20 +797,20 @@ public class Main extends javax.swing.JFrame {
                 //texto+=campos.get(i).toString();
                 texto += campos.get(i).getNombreCampo() + "," + campos.get(i).getTipo() + "," + campos.get(i).getLongitud() + "," + campos.get(i).isLlave() + "|";
             }
-            texto+="\n|";
+            texto += "\n|";
             int cc = 0;
             for (int i = 0; i < elementos.size(); i++) {
                 if (cc < campos.size()) {
-                    texto+=elementos.get(i)+"|";
+                    texto += elementos.get(i) + "|";
                 }
                 cc++;
                 if (cc == campos.size()) {
-                    texto+="\n";
+                    texto += "\n";
                     cc = 0;
-                    if (i==elementos.size()-1) {
-                        
-                    }else{
-                        texto+="|";
+                    if (i == elementos.size() - 1) {
+
+                    } else {
+                        texto += "|";
                     }
                     //System.out.println("y");
                 }
@@ -1616,6 +1616,9 @@ public class Main extends javax.swing.JFrame {
                         jt_introR.setValueAt(dato, jt_introR.getSelectedRow(), 4);
                     }
                     //char dato=JOptionPane.showInputDialog(this, "Ingrese el dato tipo char");
+                }
+                if (jt_introR.getValueAt(jt_introR.getSelectedRow(), 3) == "Si") {
+                    tree.insertar(raiz, (int) jt_introR.getValueAt(jt_introR.getSelectedRow(), 4));
                 }
             }
         } catch (Exception e) {
