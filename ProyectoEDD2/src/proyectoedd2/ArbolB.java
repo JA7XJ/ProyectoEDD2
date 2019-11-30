@@ -43,7 +43,7 @@ public class ArbolB {
             return (i);
         }
         if (x.isLeaf()) {
-            return 0;
+            return -1;
         } else {
             return buscar(x.getChildren().get(i), llave);
         }

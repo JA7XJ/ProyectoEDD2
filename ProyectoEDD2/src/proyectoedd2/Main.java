@@ -22,11 +22,11 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 public class Main extends javax.swing.JFrame {
-
+    
     public Main() {
         initComponents();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -84,6 +84,15 @@ public class Main extends javax.swing.JFrame {
         jt_introR = new javax.swing.JTable();
         jb_introD = new javax.swing.JButton();
         jb_introR = new javax.swing.JButton();
+        jd_opcionesM = new javax.swing.JDialog();
+        jLabel16 = new javax.swing.JLabel();
+        op1 = new javax.swing.JButton();
+        op2 = new javax.swing.JButton();
+        jd_op1 = new javax.swing.JDialog();
+        jLabel17 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tablaBM = new javax.swing.JTable();
+        modificar1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jb_nuevoAr = new javax.swing.JButton();
         jb_abrirAr = new javax.swing.JButton();
@@ -557,6 +566,103 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel16.setText("Elija una opcion");
+
+        op1.setText("Modificar registro buscando por su llave");
+        op1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                op1MouseClicked(evt);
+            }
+        });
+
+        op2.setText("Listar registros y escoger el que va a modificar");
+        op2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                op2MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_opcionesMLayout = new javax.swing.GroupLayout(jd_opcionesM.getContentPane());
+        jd_opcionesM.getContentPane().setLayout(jd_opcionesMLayout);
+        jd_opcionesMLayout.setHorizontalGroup(
+            jd_opcionesMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_opcionesMLayout.createSequentialGroup()
+                .addGroup(jd_opcionesMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_opcionesMLayout.createSequentialGroup()
+                        .addGap(104, 104, 104)
+                        .addComponent(jLabel16))
+                    .addGroup(jd_opcionesMLayout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addComponent(op1))
+                    .addGroup(jd_opcionesMLayout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(op2)))
+                .addContainerGap(73, Short.MAX_VALUE))
+        );
+        jd_opcionesMLayout.setVerticalGroup(
+            jd_opcionesMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_opcionesMLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(op1)
+                .addGap(18, 18, 18)
+                .addComponent(op2)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel17.setText("Edite el campo a modifcar y luego de guardar");
+
+        tablaBM.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        tablaBM.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane6.setViewportView(tablaBM);
+
+        modificar1.setText("Guardar");
+        modificar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                modificar1MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_op1Layout = new javax.swing.GroupLayout(jd_op1.getContentPane());
+        jd_op1.getContentPane().setLayout(jd_op1Layout);
+        jd_op1Layout.setHorizontalGroup(
+            jd_op1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_op1Layout.createSequentialGroup()
+                .addGroup(jd_op1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_op1Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel17))
+                    .addGroup(jd_op1Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(21, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_op1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(modificar1)
+                .addGap(210, 210, 210))
+        );
+        jd_op1Layout.setVerticalGroup(
+            jd_op1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_op1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(modificar1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -808,7 +914,7 @@ public class Main extends javax.swing.JFrame {
                     texto += "\n";
                     cc = 0;
                     if (i == elementos.size() - 1) {
-
+                        
                     } else {
                         texto += "|";
                     }
@@ -884,7 +990,7 @@ public class Main extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jb_nuevoArMouseClicked
-
+    
     void CrearArchivo(File archivo_nuevo) {
         File archivo = new File(archivo_nuevo.getPath() + ".txt");
         FileWriter fw;
@@ -894,7 +1000,7 @@ public class Main extends javax.swing.JFrame {
             fw.close();
         } catch (Exception e) {
         }
-
+        
     }
 
     private void jb_abrirArMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_abrirArMouseClicked
@@ -935,7 +1041,7 @@ public class Main extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jb_abrirArMouseClicked
-
+    
     void abrirArchivoRegistros(String ruta) throws IOException {
         File archivo = null;
         FileReader fr = null;
@@ -966,7 +1072,7 @@ public class Main extends javax.swing.JFrame {
         br.close();
         fr.close();
     }
-
+    
     void abrirArchivoCampos(String ruta) throws IOException {
         campos.clear();
         Scanner lea = null;
@@ -1360,7 +1466,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_rb_modificarFMouseClicked
 
     private void cb_tipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_tipoItemStateChanged
-
+        
         if (cb_tipo.getSelectedIndex() == 0) {
             sp_size.setEnabled(false);
         } else {
@@ -1374,6 +1480,13 @@ public class Main extends javax.swing.JFrame {
 
     private void jmi_modificarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_modificarRActionPerformed
         // TODO add your handling code here:
+        try {
+            jd_opcionesM.setModal(true);
+            jd_opcionesM.pack();
+            jd_opcionesM.setLocationRelativeTo(this);
+            jd_opcionesM.setVisible(true);
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_jmi_modificarRActionPerformed
 
     private void jmi_exportarXMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_exportarXMLActionPerformed
@@ -1424,7 +1537,7 @@ public class Main extends javax.swing.JFrame {
             }
         }
     }
-
+    
     public void leerArbol() {
         try {
             File archivo = new File(rutaAbierto + ".tree");
@@ -1571,7 +1684,7 @@ public class Main extends javax.swing.JFrame {
     private void adelanteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adelanteMouseClicked
         // TODO add your handling code here:
         try {
-
+            
         } catch (Exception e) {
         }
     }//GEN-LAST:event_adelanteMouseClicked
@@ -1579,7 +1692,7 @@ public class Main extends javax.swing.JFrame {
     private void atrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atrasMouseClicked
         // TODO add your handling code here:
         try {
-
+            
         } catch (Exception e) {
         }
     }//GEN-LAST:event_atrasMouseClicked
@@ -1666,6 +1779,63 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb_introRMouseClicked
 
+    private void op1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_op1MouseClicked
+        // TODO add your handling code here:
+        try {
+            int key = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la llave a buscar"));
+            int busqueda = tree.buscar(raiz, key);
+            if (key == busqueda) {
+                DefaultTableModel modelo = new DefaultTableModel();
+                modelo.addColumn("Nombre");
+                modelo.addColumn("Tipo");
+                modelo.addColumn("longitud");
+                modelo.addColumn("Llave primaria");
+                modelo.addColumn("Dato");
+                int size = campos.size();
+                int c = 0;
+                int indice = elementos.indexOf(key);
+                String[] cc = new String[size];
+                for (int i = 0; i < elementos.size(); i++) {
+                    if (c < size) {
+                        cc[c] = (String) elementos.get(indice);
+                        indice = indice + c;
+                    }
+                    c++;
+                    if (c == size) {
+                        modelo.addRow(cc);
+                        break;
+                        //System.out.println("y");
+                    }
+                }
+                tablaBM.setModel(modelo);
+                jd_op1.setModal(true);
+                jd_op1.pack();
+                jd_op1.setLocationRelativeTo(this);
+                jd_op1.setVisible(true);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error, dato incorrecto");
+        }
+    }//GEN-LAST:event_op1MouseClicked
+
+    private void op2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_op2MouseClicked
+        // TODO add your handling code here:
+        try {
+            
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_op2MouseClicked
+
+    private void modificar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificar1MouseClicked
+        // TODO add your handling code here:
+        try {
+            if (tablaBM.getSelectedRow() >= 0) {
+                
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_modificar1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1716,6 +1886,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1733,6 +1905,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JButton jb_abrirAr;
     private javax.swing.JButton jb_borrarC;
     private javax.swing.JButton jb_introD;
@@ -1745,6 +1918,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JDialog jd_listarc;
     private javax.swing.JDialog jd_modi;
     private javax.swing.JDialog jd_modificarC;
+    private javax.swing.JDialog jd_op1;
+    private javax.swing.JDialog jd_opcionesM;
     private javax.swing.JMenu jm_archivo;
     private javax.swing.JMenu jm_campos;
     private javax.swing.JMenu jm_indices;
@@ -1771,6 +1946,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTable jt_introR;
     private javax.swing.JTable jt_listaR;
     private javax.swing.JTable jt_modificarC;
+    private javax.swing.JButton modificar1;
+    private javax.swing.JButton op1;
+    private javax.swing.JButton op2;
     private javax.swing.JButton rb_modi;
     private javax.swing.JButton rb_modificarF;
     private javax.swing.JRadioButton rb_no;
@@ -1779,6 +1957,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JRadioButton rb_yes1;
     private javax.swing.JSpinner sp_size;
     private javax.swing.JSpinner sp_size1;
+    private javax.swing.JTable tablaBM;
     private javax.swing.JTextField tf_nombrecampo;
     private javax.swing.JTextField tf_nombrecampo1;
     // End of variables declaration//GEN-END:variables
