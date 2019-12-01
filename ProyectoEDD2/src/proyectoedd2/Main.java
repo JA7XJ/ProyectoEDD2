@@ -22,11 +22,13 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 public class Main extends javax.swing.JFrame {
-    
+
     public Main() {
+        //raiz=new Nodo(6);
+        tree = new ArbolB(6);
         initComponents();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -914,7 +916,7 @@ public class Main extends javax.swing.JFrame {
                     texto += "\n";
                     cc = 0;
                     if (i == elementos.size() - 1) {
-                        
+
                     } else {
                         texto += "|";
                     }
@@ -990,7 +992,7 @@ public class Main extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jb_nuevoArMouseClicked
-    
+
     void CrearArchivo(File archivo_nuevo) {
         File archivo = new File(archivo_nuevo.getPath() + ".txt");
         FileWriter fw;
@@ -1000,7 +1002,7 @@ public class Main extends javax.swing.JFrame {
             fw.close();
         } catch (Exception e) {
         }
-        
+
     }
 
     private void jb_abrirArMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_abrirArMouseClicked
@@ -1041,7 +1043,7 @@ public class Main extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jb_abrirArMouseClicked
-    
+
     void abrirArchivoRegistros(String ruta) throws IOException {
         File archivo = null;
         FileReader fr = null;
@@ -1072,7 +1074,7 @@ public class Main extends javax.swing.JFrame {
         br.close();
         fr.close();
     }
-    
+
     void abrirArchivoCampos(String ruta) throws IOException {
         campos.clear();
         Scanner lea = null;
@@ -1466,7 +1468,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_rb_modificarFMouseClicked
 
     private void cb_tipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_tipoItemStateChanged
-        
+
         if (cb_tipo.getSelectedIndex() == 0) {
             sp_size.setEnabled(false);
         } else {
@@ -1525,7 +1527,7 @@ public class Main extends javax.swing.JFrame {
             fw = new FileOutputStream(archivo);
             bw = new ObjectOutputStream(fw);
             //for (Alumno t : listaAlumnos) {
-            bw.writeObject(tree.getRaiz());
+            bw.writeObject(tree);
             //}
             bw.flush();
         } catch (Exception ex) {
@@ -1537,7 +1539,29 @@ public class Main extends javax.swing.JFrame {
             }
         }
     }
-    
+
+//    public void escribirArbol() {
+//        File archivo = null;
+//        FileWriter escribir = null;
+//        try {
+//            archivo = new File("Arbol"+rutaAbierto);
+//            escribir = new FileWriter(archivo);
+//            //for (Alumno t : listaAlumnos) {
+//            String texto;
+//            for (int i = 0; i < ; i++) {
+//                
+//            }
+//            //}
+//            bw.flush();
+//        } catch (Exception ex) {
+//        } finally {
+//            try {
+//                bw.close();
+//                fw.close();
+//            } catch (Exception ex) {
+//            }
+//        }
+//    }
     public void leerArbol() {
         try {
             File archivo = new File(rutaAbierto + ".tree");
@@ -1551,7 +1575,8 @@ public class Main extends javax.swing.JFrame {
                 try {
                     Object temp;
                     while ((temp = objeto.readObject()) != null) {
-                        tree.insertar(raiz, (int) temp);
+                        //tree.insertar(raiz, (int) temp);
+                        tree = (ArbolB) temp;
                     }
                 } catch (EOFException e) {
                     //encontro el final del archivo
@@ -1613,6 +1638,11 @@ public class Main extends javax.swing.JFrame {
 
     private void jmi_buscarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_buscarRActionPerformed
         // TODO add your handling code here:
+        try {
+            int x = (int) tree.busqueda(tree.raiz, 44).get(0);
+            System.out.println(x);
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_jmi_buscarRActionPerformed
 
     private void jmi_borrarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_borrarRActionPerformed
@@ -1684,7 +1714,7 @@ public class Main extends javax.swing.JFrame {
     private void adelanteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adelanteMouseClicked
         // TODO add your handling code here:
         try {
-            
+
         } catch (Exception e) {
         }
     }//GEN-LAST:event_adelanteMouseClicked
@@ -1692,7 +1722,7 @@ public class Main extends javax.swing.JFrame {
     private void atrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atrasMouseClicked
         // TODO add your handling code here:
         try {
-            
+
         } catch (Exception e) {
         }
     }//GEN-LAST:event_atrasMouseClicked
@@ -1730,9 +1760,9 @@ public class Main extends javax.swing.JFrame {
                     }
                     //char dato=JOptionPane.showInputDialog(this, "Ingrese el dato tipo char");
                 }
-                if (jt_introR.getValueAt(jt_introR.getSelectedRow(), 3) == "Si") {
-                    tree.insertar(raiz, (int) jt_introR.getValueAt(jt_introR.getSelectedRow(), 4));
-                }
+//                if (jt_introR.getValueAt(jt_introR.getSelectedRow(), 3) == "Si") {
+//                    tree.insertar((int) jt_introR.getValueAt(jt_introR.getSelectedRow(), 4));
+//                }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error, dato incorrecto ingresado");
@@ -1759,6 +1789,9 @@ public class Main extends javax.swing.JFrame {
 //                    elementos.add(jt_introR.getValueAt(i, 4));
 //                    elementos.add(jt_introR.getValueAt(i, 4));
                 }
+                if (jt_introR.getValueAt(jt_introR.getSelectedRow(), 3) == "Si") {
+                    tree.insertar((int) jt_introR.getValueAt(jt_introR.getSelectedRow(), 4));
+                }
                 JOptionPane.showMessageDialog(this, "Registro agregado con exito");
                 for (int i = 0; i < size; i++) {
                     jt_introR.setValueAt("", i, 4);
@@ -1783,8 +1816,8 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             int key = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la llave a buscar"));
-            int busqueda = tree.buscar(raiz, key);
-            if (key == busqueda) {
+            ArrayList busqueda2 = tree.busqueda(tree.raiz, key);
+            if (key == (int) busqueda2.get(0)) {
                 DefaultTableModel modelo = new DefaultTableModel();
                 modelo.addColumn("Nombre");
                 modelo.addColumn("Tipo");
@@ -1793,7 +1826,7 @@ public class Main extends javax.swing.JFrame {
                 modelo.addColumn("Dato");
                 int size = campos.size();
                 int c = 0;
-                int indice = elementos.indexOf(key);
+                int indice = (int) busqueda2.get(1);
                 String[] cc = new String[size];
                 for (int i = 0; i < elementos.size(); i++) {
                     if (c < size) {
@@ -1821,16 +1854,31 @@ public class Main extends javax.swing.JFrame {
     private void op2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_op2MouseClicked
         // TODO add your handling code here:
         try {
-            
+
         } catch (Exception e) {
         }
     }//GEN-LAST:event_op2MouseClicked
+
+    public static void imprimir(Nodo nodo, int iAltura) {
+        char c[] = new char[iAltura];
+        for (int i = 0; i < c.length; i++) {
+            c[i] = '-';
+        }
+        if (nodo == null) {
+            return;
+        }
+        System.out.println(new String(c) + nodo.llaves.toString());
+        iAltura++;
+        for (int i = 0; i < nodo.puntadores.size(); i++) {
+            imprimir(nodo.puntadores.get(i), iAltura);
+        }
+    }
 
     private void modificar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificar1MouseClicked
         // TODO add your handling code here:
         try {
             if (tablaBM.getSelectedRow() >= 0) {
-                
+
             }
         } catch (Exception e) {
         }
@@ -1964,7 +2012,7 @@ public class Main extends javax.swing.JFrame {
     ArrayList<Campo> campos = new ArrayList();
     ArrayList elementos = new ArrayList();
     boolean Abrir, camposm;
-    Nodo raiz = new Nodo(6);
+    //Nodo raiz;
     String rutaAbierto;
-    ArbolB tree = new ArbolB();
+    ArbolB tree;
 }
