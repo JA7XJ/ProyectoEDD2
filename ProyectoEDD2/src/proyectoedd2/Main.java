@@ -25,7 +25,7 @@ public class Main extends javax.swing.JFrame {
 
     public Main() {
         //raiz=new Nodo(6);
-        tree = new ArbolB(6);
+//        tree = new ArbolB(6);
         initComponents();
     }
 
@@ -89,16 +89,20 @@ public class Main extends javax.swing.JFrame {
         jd_opcionesM = new javax.swing.JDialog();
         jLabel16 = new javax.swing.JLabel();
         op1 = new javax.swing.JButton();
-        op2 = new javax.swing.JButton();
         jd_op1 = new javax.swing.JDialog();
         jLabel17 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tablaBM = new javax.swing.JTable();
         modificar1 = new javax.swing.JButton();
+        jd_buscarR = new javax.swing.JDialog();
+        jLabel18 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tablaBM1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jb_nuevoAr = new javax.swing.JButton();
         jb_abrirAr = new javax.swing.JButton();
         btn_Salida = new javax.swing.JButton();
+        bb = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jm_archivo = new javax.swing.JMenu();
         jmi_guardarArchivo = new javax.swing.JMenuItem();
@@ -578,13 +582,6 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        op2.setText("Listar registros y escoger el que va a modificar");
-        op2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                op2MouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout jd_opcionesMLayout = new javax.swing.GroupLayout(jd_opcionesM.getContentPane());
         jd_opcionesM.getContentPane().setLayout(jd_opcionesMLayout);
         jd_opcionesMLayout.setHorizontalGroup(
@@ -596,11 +593,8 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(jLabel16))
                     .addGroup(jd_opcionesMLayout.createSequentialGroup()
                         .addGap(89, 89, 89)
-                        .addComponent(op1))
-                    .addGroup(jd_opcionesMLayout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(op2)))
-                .addContainerGap(73, Short.MAX_VALUE))
+                        .addComponent(op1)))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         jd_opcionesMLayout.setVerticalGroup(
             jd_opcionesMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -609,9 +603,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(op1)
-                .addGap(18, 18, 18)
-                .addComponent(op2)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -665,6 +657,44 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel18.setText("Registro encontrado");
+
+        tablaBM1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        tablaBM1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane7.setViewportView(tablaBM1);
+
+        javax.swing.GroupLayout jd_buscarRLayout = new javax.swing.GroupLayout(jd_buscarR.getContentPane());
+        jd_buscarR.getContentPane().setLayout(jd_buscarRLayout);
+        jd_buscarRLayout.setHorizontalGroup(
+            jd_buscarRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_buscarRLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jd_buscarRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_buscarRLayout.createSequentialGroup()
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_buscarRLayout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addGap(142, 142, 142))))
+        );
+        jd_buscarRLayout.setVerticalGroup(
+            jd_buscarRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_buscarRLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -688,6 +718,13 @@ public class Main extends javax.swing.JFrame {
         btn_Salida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_SalidaMouseClicked(evt);
+            }
+        });
+
+        bb.setText("Imprimir Arbol");
+        bb.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bbMouseClicked(evt);
             }
         });
 
@@ -864,6 +901,8 @@ public class Main extends javax.swing.JFrame {
                                 .addComponent(jb_abrirAr, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(66, 66, 66))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(bb)
+                        .addGap(113, 113, 113)
                         .addComponent(btn_Salida)
                         .addContainerGap())))
         );
@@ -876,8 +915,13 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jb_nuevoAr, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jb_abrirAr, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(btn_Salida)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(btn_Salida))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bb)))
                 .addContainerGap())
         );
 
@@ -926,6 +970,7 @@ public class Main extends javax.swing.JFrame {
             //texto = campos.toString();
 //            rb_yes.setEnabled(true);
 //            rb_no.setEnabled(true);
+            System.out.println(rutaAbierto);
             escribirArbol();
             escribir.append(texto);
             escribir.close();
@@ -987,7 +1032,21 @@ public class Main extends javax.swing.JFrame {
             File archivo = guardar.getSelectedFile();
             //File archivo=new File(g)
             rutaAbierto = archivo.getPath(); //indicar que es el que se esta usando
+            if (rutaAbierto.endsWith(".txt")) {
+                ruta2 = rutaAbierto;
+                String replace = ruta2.replace(".txt", ".tree");
+                ruta2 = replace;
+            }
+            if (rutaAbierto.endsWith(".txt")) {
+                ruta3 = rutaAbierto;
+                String replace = ruta3.replace(".txt", "index");
+                ruta3 = replace;
+                ruta3 = ruta3 + ".txt";
+            }
             Abrir = false;
+            System.out.println(rutaAbierto);
+            System.out.println(ruta2);
+            tree = new ArbolB(6);
             //CrearArchivo(archivo);
         } catch (Exception e) {
         }
@@ -1019,8 +1078,22 @@ public class Main extends javax.swing.JFrame {
 //                jm_indices.setEnabled(true);
 //                jm_utilidades.setEnabled(true);
                 rutaAbierto = abrir.getSelectedFile().getPath();
+                if (rutaAbierto.endsWith(".txt")) {
+                    ruta2 = rutaAbierto;
+                    String replace = ruta2.replace(".txt", ".tree");
+                    ruta2 = replace;
+                }
+                if (rutaAbierto.endsWith(".txt")) {
+                    ruta3 = rutaAbierto;
+                    String replace = ruta3.replace(".txt", "index");
+                    ruta3 = replace;
+                    ruta3 = ruta3 + ".txt";
+                }
+                System.out.println(ruta2);
+                System.out.println(ruta3);
                 abrirArchivoCampos(rutaAbierto);
                 abrirArchivoRegistros(rutaAbierto);
+                tree = new ArbolB(6);
                 leerArbol();
                 if (elementos.isEmpty()) {
                     jm_archivo.setEnabled(true);
@@ -1036,6 +1109,8 @@ public class Main extends javax.swing.JFrame {
                     jm_utilidades.setEnabled(true);
                 }
                 jb_nuevoAr.setEnabled(false);
+                System.out.println(rutaAbierto);
+                imprimir(tree.raiz, 0);
                 Abrir = true;
             } else {
                 JOptionPane.showMessageDialog(this, "Archivo no seleccionado");
@@ -1503,8 +1578,13 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             try {
+                ArbolB a=new ArbolB(6);
+                crearIndices();
+                for (int i = 0; i < indices.size(); i++) {
+                    a.insertar((int) indices.get(i));
+                }
+                tree=a;
                 escribirArbol();
-                leerArbol();
             } catch (Exception e) {
             }
         } catch (Exception e) {
@@ -1514,15 +1594,82 @@ public class Main extends javax.swing.JFrame {
     private void jmi_reIndexarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_reIndexarAActionPerformed
         // TODO add your handling code here:
         try {
-            escribirArbol();
-            leerArbol();
+            crearIndices();
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jmi_reIndexarAActionPerformed
+
+    public void leerIndices() throws IOException {
+        Scanner lea = null;
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+        //Scanner lea2 = null;
+        try {
+//            File archivo = new File(ruta);
+            archivo = new File(ruta3); //cualquier ruta
+            fr = new FileReader(archivo); //apunta al archivo
+            br = new BufferedReader(fr); //apunta al canalF
+            lea = new Scanner(archivo);
+            String nombrec = "";
+            int tipo, longitud;
+            boolean llave = false;
+            lea.useDelimiter("|");
+            String texto = "", texto2 = "";
+            int c = 0;
+            while ((texto = br.readLine()) != null) {  //leer archivo de texto            
+                indices.add(texto);
+            }
+//            StringTokenizer tokens = new StringTokenizer(texto2, "|");
+//            while (tokens.hasMoreTokens()) {
+//                String texto3 = tokens.nextToken();
+//                StringTokenizer tokens2 = new StringTokenizer(texto3, ",");
+//                //int c = 0, c2 = 0;
+//                while (tokens2.hasMoreTokens()) {
+////                        System.out.println(tokens2.nextToken());
+////                        System.out.println(c);
+////                        c=c+1;
+//                    nombrec = tokens2.nextToken();
+//                    tipo = Integer.parseInt(tokens2.nextToken());
+//                    longitud = Integer.parseInt(tokens2.nextToken());
+//                    if ("true".equals(tokens2.nextToken())) {
+//                        llave = true;
+//                    } else {
+//                        llave = false;
+//                    }
+//                    campos.add(new Campo(nombrec, tipo, longitud, llave));
+//                }
+//            }
+            JOptionPane.showMessageDialog(this, "Archivo cargado con exito");
+            //System.out.println(texto);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error, archivo de texto no compatible");
+        }
+        br.close();
+        fr.close();
+    }
+
+    public void crearIndices() throws IOException {
+        String texto = "";
+        File archivo = null;
+        FileWriter escribir = null;
+        archivo = new File(ruta3);
+        escribir = new FileWriter(archivo);
+        for (int i = 0; i < campos.size(); i++) {
+            if (campos.get(i).isLlave()) {
+                for (int j = 0; j < elementos.size(); j++) {
+                    texto += elementos.get(campos.indexOf(campos.get(i))) + "\n";
+                }
+            }
+        }
+        escribir.append(texto);
+        escribir.close();
+    }
+
     public void escribirArbol() {
         FileOutputStream fw = null;
         ObjectOutputStream bw = null;
-        File archivo = new File(rutaAbierto + ".tree");
+        File archivo = new File(ruta2);
         try {
             fw = new FileOutputStream(archivo);
             bw = new ObjectOutputStream(fw);
@@ -1564,7 +1711,7 @@ public class Main extends javax.swing.JFrame {
 //    }
     public void leerArbol() {
         try {
-            File archivo = new File(rutaAbierto + ".tree");
+            File archivo = new File(ruta2);
 //            ArbolB tree=new ArbolB();
 //            Nodo raiz=new Nodo(6);
             if (archivo.exists()) {
@@ -1574,6 +1721,10 @@ public class Main extends javax.swing.JFrame {
                         = new ObjectInputStream(entrada);
                 try {
                     Object temp;
+//                    while ((temp = objeto.readObject()) != null) {
+//                        //tree.insertar(raiz, (int) temp);
+//                        tree = (ArbolB) temp;
+//                    }
                     while ((temp = objeto.readObject()) != null) {
                         //tree.insertar(raiz, (int) temp);
                         tree = (ArbolB) temp;
@@ -1639,9 +1790,42 @@ public class Main extends javax.swing.JFrame {
     private void jmi_buscarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_buscarRActionPerformed
         // TODO add your handling code here:
         try {
-            int x = (int) tree.busqueda(tree.raiz, 44).get(0);
-            System.out.println(x);
+            int key = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la llave a buscar"));
+            ArrayList busqueda2 = tree.busqueda(tree.raiz, key);
+            if (key == (int) busqueda2.get(0)) {
+                k = key;
+                DefaultTableModel modelo = new DefaultTableModel();
+                int size = campos.size();
+                //for (int i = 0; i < size; i++) {
+                for (int i = 0; i < campos.size(); i++) {
+                    modelo.addColumn(campos.get(i).getNombreCampo());
+                }
+                int c = 0, c2 = 1;
+                int indice = (int) busqueda2.get(1);
+                in = indice;
+                String[] cc = new String[size];
+                for (int i = 0; i < elementos.size(); i++) {
+                    if (c < size) {
+                        cc[c] = (String) elementos.get(indice);
+                        System.out.println(indice);
+                        indice = indice + c2;
+                    }
+                    c++;
+                    if (c == size) {
+                        modelo.addRow(cc);
+                        break;
+                        //System.out.println("y");
+                    }
+                }
+                tablaBM1.setModel(modelo);
+                jd_buscarR.setModal(true);
+                jd_buscarR.pack();
+                jd_buscarR.setLocationRelativeTo(this);
+                jd_buscarR.setVisible(true);
+            }
         } catch (Exception e) {
+            //JOptionPane.showMessageDialog(this, "Error, registro no existe");
+            e.printStackTrace();
         }
     }//GEN-LAST:event_jmi_buscarRActionPerformed
 
@@ -1788,10 +1972,15 @@ public class Main extends javax.swing.JFrame {
 //                    elementos.add(jt_introR.getValueAt(i, 4));
 //                    elementos.add(jt_introR.getValueAt(i, 4));
 //                    elementos.add(jt_introR.getValueAt(i, 4));
+                    if (jt_introR.getValueAt(i, 3) == "Si") {
+                        System.out.println("y");
+                        tree.insertar(Integer.parseInt((String) jt_introR.getValueAt(i, 4)));
+                    }
                 }
-                if (jt_introR.getValueAt(jt_introR.getSelectedRow(), 3) == "Si") {
-                    tree.insertar((int) jt_introR.getValueAt(jt_introR.getSelectedRow(), 4));
-                }
+//                if (jt_introR.getValueAt(jt_introR.getSelectedRow(), 3) == "Si") {
+//                    System.out.println("y");
+//                    tree.insertar(Integer.parseInt((String) jt_introR.getValueAt(jt_introR.getSelectedRow(), 4)));
+//                }
                 JOptionPane.showMessageDialog(this, "Registro agregado con exito");
                 for (int i = 0; i < size; i++) {
                     jt_introR.setValueAt("", i, 4);
@@ -1809,6 +1998,7 @@ public class Main extends javax.swing.JFrame {
 //                jt_introR.setValueAt("", i, 4);
 //            }
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event_jb_introRMouseClicked
 
@@ -1818,20 +2008,22 @@ public class Main extends javax.swing.JFrame {
             int key = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la llave a buscar"));
             ArrayList busqueda2 = tree.busqueda(tree.raiz, key);
             if (key == (int) busqueda2.get(0)) {
+                k = key;
                 DefaultTableModel modelo = new DefaultTableModel();
-                modelo.addColumn("Nombre");
-                modelo.addColumn("Tipo");
-                modelo.addColumn("longitud");
-                modelo.addColumn("Llave primaria");
-                modelo.addColumn("Dato");
                 int size = campos.size();
-                int c = 0;
+                //for (int i = 0; i < size; i++) {
+                for (int i = 0; i < campos.size(); i++) {
+                    modelo.addColumn(campos.get(i).getNombreCampo());
+                }
+                int c = 0, c2 = 1;
                 int indice = (int) busqueda2.get(1);
+                in = indice;
                 String[] cc = new String[size];
                 for (int i = 0; i < elementos.size(); i++) {
                     if (c < size) {
                         cc[c] = (String) elementos.get(indice);
-                        indice = indice + c;
+                        System.out.println(indice);
+                        indice = indice + c2;
                     }
                     c++;
                     if (c == size) {
@@ -1847,17 +2039,10 @@ public class Main extends javax.swing.JFrame {
                 jd_op1.setVisible(true);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error, dato incorrecto");
+            JOptionPane.showMessageDialog(this, "Error, registro no existe");
+            //e.printStackTrace();
         }
     }//GEN-LAST:event_op1MouseClicked
-
-    private void op2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_op2MouseClicked
-        // TODO add your handling code here:
-        try {
-
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_op2MouseClicked
 
     public static void imprimir(Nodo nodo, int iAltura) {
         char c[] = new char[iAltura];
@@ -1878,11 +2063,39 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             if (tablaBM.getSelectedRow() >= 0) {
-
+//                boolean si;
+//                ArrayList busqueda2 = tree.busqueda(tree.raiz, k);
+//                if (k == (int) busqueda2.get(0)) {
+//
+//                }
+                int c = 1, cc = 0;
+                int size = campos.size();
+                for (int i = 0; i < elementos.size(); i++) {
+                    if (cc < size) {
+                        elementos.set(in, tablaBM.getValueAt(0, i));
+                        //System.out.println(indice);
+                        in = in + c;
+                    }
+                    cc++;
+                    if (cc == size) {
+                        break;
+                        //System.out.println("y");
+                    }
+                }
+//                
+//                for (int i = 0; i < tablaBM.getRowCount(); i++) {
+//                    tablaBM.setValueAt("", 0, i);
+//                }
+                jd_op1.setVisible(false);
             }
         } catch (Exception e) {
         }
     }//GEN-LAST:event_modificar1MouseClicked
+
+    private void bbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbMouseClicked
+        // TODO add your handling code here:
+        imprimir(tree.raiz, 0);
+    }//GEN-LAST:event_bbMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1922,6 +2135,7 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adelante;
     private javax.swing.JButton atras;
+    private javax.swing.JButton bb;
     private javax.swing.JButton btn_Salida;
     private javax.swing.JComboBox<String> cb_tipo;
     private javax.swing.JComboBox<String> cb_tipo1;
@@ -1936,6 +2150,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1954,12 +2169,14 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JButton jb_abrirAr;
     private javax.swing.JButton jb_borrarC;
     private javax.swing.JButton jb_introD;
     private javax.swing.JButton jb_introR;
     private javax.swing.JButton jb_nuevoAr;
     private javax.swing.JDialog jd_borrarC;
+    private javax.swing.JDialog jd_buscarR;
     private javax.swing.JDialog jd_crearC;
     private javax.swing.JDialog jd_insertarR;
     private javax.swing.JDialog jd_listarRegistros;
@@ -1996,7 +2213,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTable jt_modificarC;
     private javax.swing.JButton modificar1;
     private javax.swing.JButton op1;
-    private javax.swing.JButton op2;
     private javax.swing.JButton rb_modi;
     private javax.swing.JButton rb_modificarF;
     private javax.swing.JRadioButton rb_no;
@@ -2006,6 +2222,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JSpinner sp_size;
     private javax.swing.JSpinner sp_size1;
     private javax.swing.JTable tablaBM;
+    private javax.swing.JTable tablaBM1;
     private javax.swing.JTextField tf_nombrecampo;
     private javax.swing.JTextField tf_nombrecampo1;
     // End of variables declaration//GEN-END:variables
@@ -2013,6 +2230,9 @@ public class Main extends javax.swing.JFrame {
     ArrayList elementos = new ArrayList();
     boolean Abrir, camposm;
     //Nodo raiz;
+    int in, k;
     String rutaAbierto;
+    String ruta2, ruta3;
+    ArrayList indices = new ArrayList();
     ArbolB tree;
 }
