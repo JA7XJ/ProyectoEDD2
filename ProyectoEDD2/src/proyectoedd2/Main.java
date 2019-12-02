@@ -971,10 +971,18 @@ public class Main extends javax.swing.JFrame {
 //            rb_yes.setEnabled(true);
 //            rb_no.setEnabled(true);
             System.out.println(rutaAbierto);
-            escribirArbol();
+            System.out.println(ruta2);
+            System.out.println(ruta3);
+            if (elementos.isEmpty()) {
+
+            } else {
+                escribirArbol();
+            }
+
             escribir.append(texto);
             escribir.close();
         } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }//GEN-LAST:event_jmi_guardarArchivoActionPerformed
 
@@ -1022,6 +1030,7 @@ public class Main extends javax.swing.JFrame {
             rb_yes.setEnabled(true);
             rb_no.setEnabled(true);
             jb_abrirAr.setEnabled(false);
+            tree = new ArbolB(6);
             //aqui crear archivo
             JFileChooser guardar = new JFileChooser();
             FileFilter filtro = new FileNameExtensionFilter("Archivos de texto(.txt)", "txt");
@@ -1036,19 +1045,28 @@ public class Main extends javax.swing.JFrame {
                 ruta2 = rutaAbierto;
                 String replace = ruta2.replace(".txt", ".tree");
                 ruta2 = replace;
+            } else {
+                ruta2 = rutaAbierto;
+                //String replace = ruta2.replace(".txt", ".tree");
+                ruta2 = ruta2 + ".tree";
             }
             if (rutaAbierto.endsWith(".txt")) {
                 ruta3 = rutaAbierto;
                 String replace = ruta3.replace(".txt", "index");
                 ruta3 = replace;
                 ruta3 = ruta3 + ".txt";
+            } else {
+                ruta3 = rutaAbierto;
+                //String replace = ruta3.replace(".txt", "index");
+                //ruta3 = replace;
+                ruta3 = ruta3 + "index.txt";
             }
             Abrir = false;
             System.out.println(rutaAbierto);
             System.out.println(ruta2);
-            tree = new ArbolB(6);
             //CrearArchivo(archivo);
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event_jb_nuevoArMouseClicked
 
@@ -1224,6 +1242,8 @@ public class Main extends javax.swing.JFrame {
             jb_abrirAr.setEnabled(true);
             rutaAbierto = "";
             campos.clear();
+            elementos.clear();
+            indices.clear();
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jmi_cerrarArchivoActionPerformed
@@ -1576,19 +1596,23 @@ public class Main extends javax.swing.JFrame {
 
     private void jmi_crearIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_crearIActionPerformed
         // TODO add your handling code here:
+//        try {
         try {
-            try {
-                ArbolB a=new ArbolB(6);
-                crearIndices();
-                for (int i = 0; i < indices.size(); i++) {
-                    a.insertar((int) indices.get(i));
-                }
-                tree=a;
-                escribirArbol();
-            } catch (Exception e) {
+            ArbolB a = new ArbolB(6);
+            crearIndices();
+            leerIndices();
+            for (int i = 0; i < indices.size(); i++) {
+                a.insertar(Integer.parseInt((String) indices.get(i)));
             }
+            tree = a;
+            escribirArbol();
+            indices.clear();
         } catch (Exception e) {
+            e.printStackTrace();
         }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }//GEN-LAST:event_jmi_crearIActionPerformed
 
     private void jmi_reIndexarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_reIndexarAActionPerformed
@@ -1596,6 +1620,7 @@ public class Main extends javax.swing.JFrame {
         try {
             crearIndices();
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event_jmi_reIndexarAActionPerformed
 
@@ -1617,7 +1642,8 @@ public class Main extends javax.swing.JFrame {
             lea.useDelimiter("|");
             String texto = "", texto2 = "";
             int c = 0;
-            while ((texto = br.readLine()) != null) {  //leer archivo de texto            
+            while ((texto = br.readLine()) != null) {  //leer archivo de texto   
+                System.out.println(texto);
                 indices.add(texto);
             }
 //            StringTokenizer tokens = new StringTokenizer(texto2, "|");
@@ -1655,11 +1681,75 @@ public class Main extends javax.swing.JFrame {
         FileWriter escribir = null;
         archivo = new File(ruta3);
         escribir = new FileWriter(archivo);
+//        for (int i = 0; i < campos.size(); i++) {
+//            if (campos.get(i).isLlave()) {
+//                for (int j = 0; j < elementos.size(); j++) {
+//                    if (rootPaneCheckingEnabled) {
+//                        
+//                    }
+//                    texto += elementos.get(campos.indexOf(campos.get(i))) + "\n";
+//                }
+//            }
+//        }
+        int indi = 0;
         for (int i = 0; i < campos.size(); i++) {
             if (campos.get(i).isLlave()) {
-                for (int j = 0; j < elementos.size(); j++) {
-                    texto += elementos.get(campos.indexOf(campos.get(i))) + "\n";
+                indi = campos.indexOf(campos.get(i));
+                System.out.println(indi);
+            }
+        }
+        int counter = 0;
+        for (int j = 0; j < campos.size(); j++) {
+            if (campos.get(j).getTipo() == 0) {
+//                                    counter++;
+                if (campos.get(j).isLlave()) {
+                    break;
                 }
+//                                    counter++;
+            }
+            if (campos.get(j).getTipo() == 1) {
+//                                    counter++;
+                if (campos.get(j).isLlave()) {
+                    break;
+                }
+//                                    counter++;
+            }
+            if (campos.get(j).getTipo() == 2) {
+//                                    counter++;
+                if (campos.get(j).isLlave()) {
+                    break;
+                }
+//                                    counter++;
+            }
+            if (campos.get(j).getTipo() == 3) {
+//                                    counter++;
+                if (campos.get(j).isLlave()) {
+                    break;
+                }
+//                                    counter++;
+            }
+            counter++;
+        }
+        System.out.println("counter "+counter);
+        System.out.println("indi "+indi);
+        System.out.println("campos "+campos.size());
+        //indi=indi;
+        int res = 0;
+        if (indi == 0) {
+            counter=1;
+        } 
+//        System.out.println(res);
+        int c = 0;
+        for (int i = 0; i < elementos.size(); i++) {
+            if (indi < elementos.size()) {
+                texto += elementos.get(indi) + "\n";
+                if (indi==0) {
+                    indi = indi + counter;                    
+                    indi = indi + campos.size() - 1;
+                }else{
+                    indi = indi + campos.size();
+                }
+                System.out.println(indi);
             }
         }
         escribir.append(texto);
@@ -1792,6 +1882,8 @@ public class Main extends javax.swing.JFrame {
         try {
             int key = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la llave a buscar"));
             ArrayList busqueda2 = tree.busqueda(tree.raiz, key);
+            System.out.println("indice " + busqueda2.get(1));
+            System.out.println("llave " + busqueda2.get(0));
             if (key == (int) busqueda2.get(0)) {
                 k = key;
                 DefaultTableModel modelo = new DefaultTableModel();
@@ -1805,16 +1897,50 @@ public class Main extends javax.swing.JFrame {
                 in = indice;
                 String[] cc = new String[size];
                 for (int i = 0; i < elementos.size(); i++) {
-                    if (c < size) {
-                        cc[c] = (String) elementos.get(indice);
-                        System.out.println(indice);
-                        indice = indice + c2;
-                    }
-                    c++;
-                    if (c == size) {
-                        modelo.addRow(cc);
-                        break;
-                        //System.out.println("y");
+                    if (Character.isDigit(((String) elementos.get(i)).charAt(0))) {
+                        //System.out.println("entro");
+                        if (Integer.parseInt((String) elementos.get(i)) == key) {
+                            c2 = elementos.indexOf(elementos.get(i));
+                            int counter = 0;
+                            for (int j = 0; j < campos.size(); j++) {
+                                if (campos.get(j).getTipo() == 0) {
+//                                    counter++;
+                                    if (campos.get(j).isLlave()) {
+                                        break;
+                                    }
+//                                    counter++;
+                                }
+                                if (campos.get(j).getTipo() == 1) {
+//                                    counter++;
+                                    if (campos.get(j).isLlave()) {
+                                        break;
+                                    }
+//                                    counter++;
+                                }
+                                if (campos.get(j).getTipo() == 2) {
+//                                    counter++;
+                                    if (campos.get(j).isLlave()) {
+                                        break;
+                                    }
+//                                    counter++;
+                                }
+                                if (campos.get(j).getTipo() == 3) {
+//                                    counter++;
+                                    if (campos.get(j).isLlave()) {
+                                        break;
+                                    }
+//                                    counter++;
+                                }
+                                counter++;
+                            }
+                            c2 = c2 - counter;
+                            for (int j = 0; j < size; j++) {
+                                cc[j] = (String) elementos.get(c2);
+                                c2++;
+                                //System.out.println(c2);
+                            }
+                            modelo.addRow(cc);
+                        }
                     }
                 }
                 tablaBM1.setModel(modelo);
@@ -1824,8 +1950,8 @@ public class Main extends javax.swing.JFrame {
                 jd_buscarR.setVisible(true);
             }
         } catch (Exception e) {
-            //JOptionPane.showMessageDialog(this, "Error, registro no existe");
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error, registro no existe");
+//            e.printStackTrace();
         }
     }//GEN-LAST:event_jmi_buscarRActionPerformed
 
@@ -2020,16 +2146,50 @@ public class Main extends javax.swing.JFrame {
                 in = indice;
                 String[] cc = new String[size];
                 for (int i = 0; i < elementos.size(); i++) {
-                    if (c < size) {
-                        cc[c] = (String) elementos.get(indice);
-                        System.out.println(indice);
-                        indice = indice + c2;
-                    }
-                    c++;
-                    if (c == size) {
-                        modelo.addRow(cc);
-                        break;
-                        //System.out.println("y");
+                    if (Character.isDigit(((String) elementos.get(i)).charAt(0))) {
+                        //System.out.println("entro");
+                        if (Integer.parseInt((String) elementos.get(i)) == key) {
+                            c2 = elementos.indexOf(elementos.get(i));
+                            int counter = 0;
+                            for (int j = 0; j < campos.size(); j++) {
+                                if (campos.get(j).getTipo() == 0) {
+//                                    counter++;
+                                    if (campos.get(j).isLlave()) {
+                                        break;
+                                    }
+//                                    counter++;
+                                }
+                                if (campos.get(j).getTipo() == 1) {
+//                                    counter++;
+                                    if (campos.get(j).isLlave()) {
+                                        break;
+                                    }
+//                                    counter++;
+                                }
+                                if (campos.get(j).getTipo() == 2) {
+//                                    counter++;
+                                    if (campos.get(j).isLlave()) {
+                                        break;
+                                    }
+//                                    counter++;
+                                }
+                                if (campos.get(j).getTipo() == 3) {
+//                                    counter++;
+                                    if (campos.get(j).isLlave()) {
+                                        break;
+                                    }
+//                                    counter++;
+                                }
+                                counter++;
+                            }
+                            c2 = c2 - counter;
+                            for (int j = 0; j < size; j++) {
+                                cc[j] = (String) elementos.get(c2);
+                                c2++;
+                                //System.out.println(c2);
+                            }
+                            modelo.addRow(cc);
+                        }
                     }
                 }
                 tablaBM.setModel(modelo);
@@ -2070,18 +2230,70 @@ public class Main extends javax.swing.JFrame {
 //                }
                 int c = 1, cc = 0;
                 int size = campos.size();
+//                int c = 0, c2 = 1;
+//                int indice = (int) busqueda2.get(1);
+//                in = indice;
+//                String[] cc = new String[size];
                 for (int i = 0; i < elementos.size(); i++) {
-                    if (cc < size) {
-                        elementos.set(in, tablaBM.getValueAt(0, i));
-                        //System.out.println(indice);
-                        in = in + c;
-                    }
-                    cc++;
-                    if (cc == size) {
-                        break;
-                        //System.out.println("y");
+                    //System.out.println(elementos.get(i));
+                    if (Character.isDigit(((String) elementos.get(i)).charAt(0))) {
+                        //System.out.println("entro");
+                        if (Integer.parseInt((String) elementos.get(i)) == k) {
+                            cc = elementos.indexOf(elementos.get(i));
+                            int counter = 0;
+                            for (int j = 0; j < campos.size(); j++) {
+                                if (campos.get(j).getTipo() == 0) {
+//                                    counter++;
+                                    if (campos.get(j).isLlave()) {
+                                        break;
+                                    }
+//                                    counter++;
+                                }
+                                if (campos.get(j).getTipo() == 1) {
+//                                    counter++;
+                                    if (campos.get(j).isLlave()) {
+                                        break;
+                                    }
+//                                    counter++;
+                                }
+                                if (campos.get(j).getTipo() == 2) {
+//                                    counter++;
+                                    if (campos.get(j).isLlave()) {
+                                        break;
+                                    }
+//                                    counter++;
+                                }
+                                if (campos.get(j).getTipo() == 3) {
+//                                    counter++;
+                                    if (campos.get(j).isLlave()) {
+                                        break;
+                                    }
+//                                    counter++;
+                                }
+                                counter++;
+                            }
+                            cc = cc - counter;
+                            for (int j = 0; j < size; j++) {
+                                elementos.set(cc, tablaBM.getValueAt(0, j));
+                                cc++;
+                                //System.out.println(c2);
+                            }
+                        }
                     }
                 }
+//                for (int i = 0; i < elementos.size(); i++) {
+//                    if (cc < size) {
+//                        elementos.set(in, tablaBM.getValueAt(0, i));
+//                        //System.out.println(indice);
+//                        in = in + c;
+//                    }
+//                    cc++;
+//                    if (cc == size) {
+//                        break;
+//                        //System.out.println("y");
+//                    }
+//                }
+//                elementos.set(in, tablaBM.getValueAt(0, i));
 //                
 //                for (int i = 0; i < tablaBM.getRowCount(); i++) {
 //                    tablaBM.setValueAt("", 0, i);
