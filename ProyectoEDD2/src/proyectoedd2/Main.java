@@ -1241,6 +1241,7 @@ public class Main extends javax.swing.JFrame {
             jm_registros.setEnabled(false);
             jm_indices.setEnabled(false);
             jm_utilidades.setEnabled(false);
+            bb.setEnabled(false);
             jb_nuevoAr.setEnabled(true);
             jb_abrirAr.setEnabled(true);
             rutaAbierto = "";
