@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class ArbolB implements Serializable{
+public class ArbolB implements Serializable {
 
     Nodo raiz;
     int orden;
@@ -34,21 +34,39 @@ public class ArbolB implements Serializable{
 //            return busqueda(x.puntadores.get(i), llave);
 //        }
 //    }
-    public ArrayList busqueda(Nodo x, int llave) {
+//    public ArrayList busqueda(Nodo x, int llave) {
+//        int i = 0;
+//        while (i <= x.nllaves - 1 && llave > x.llaves.get(i)) {
+//            i++;
+//        }
+//        if (i <= x.nllaves - 1 && llave == x.llaves.get(i)) {
+//            ArrayList xx = new ArrayList();
+//            xx.add(llave);
+//            xx.add(i);
+//            return xx;
+//        }
+//        if (x.hoja) {
+//            return null;
+//        } else {
+//            return busqueda(x.puntadores.get(i), llave);
+//        }
+//    }
+    public ArrayList busqueda(int index, Nodo x, int llave) {
         int i = 0;
         while (i <= x.nllaves - 1 && llave > x.llaves.get(i)) {
             i++;
+            index=index+1;
         }
         if (i <= x.nllaves - 1 && llave == x.llaves.get(i)) {
             ArrayList xx = new ArrayList();
             xx.add(llave);
-            xx.add(i);
+            xx.add(index);
             return xx;
         }
         if (x.hoja) {
             return null;
         } else {
-            return busqueda(x.puntadores.get(i), llave);
+            return busqueda(index, x.puntadores.get(i), llave);
         }
     }
 
@@ -58,7 +76,7 @@ public class ArbolB implements Serializable{
             Nodo s = new Nodo(orden);
             s.hoja = false;
             s.puntadores.set(0, r);
-            s.setpadre();
+            //s.setpadre();
             s = split(s, 1, r);
             s = insertarnofull(s, llave);
             raiz = s;
@@ -98,7 +116,7 @@ public class ArbolB implements Serializable{
 
     public Nodo split(Nodo x, int i, Nodo y) {
         Nodo z = new Nodo(orden);
-        z.setpadre();
+        //z.setpadre();
         z.hoja = y.hoja;
         z.padre = y.padre;
         z.nllaves = (int) Math.floor((orden - 1) / 2);

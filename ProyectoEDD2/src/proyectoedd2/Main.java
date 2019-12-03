@@ -722,6 +722,7 @@ public class Main extends javax.swing.JFrame {
         });
 
         bb.setText("Imprimir Arbol");
+        bb.setEnabled(false);
         bb.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bbMouseClicked(evt);
@@ -1064,6 +1065,7 @@ public class Main extends javax.swing.JFrame {
             Abrir = false;
             System.out.println(rutaAbierto);
             System.out.println(ruta2);
+            bb.setEnabled(true);
             //CrearArchivo(archivo);
         } catch (Exception e) {
             e.printStackTrace();
@@ -1130,6 +1132,7 @@ public class Main extends javax.swing.JFrame {
                 System.out.println(rutaAbierto);
                 imprimir(tree.raiz, 0);
                 Abrir = true;
+                bb.setEnabled(true);
             } else {
                 JOptionPane.showMessageDialog(this, "Archivo no seleccionado");
             }
@@ -1730,23 +1733,23 @@ public class Main extends javax.swing.JFrame {
             }
             counter++;
         }
-        System.out.println("counter "+counter);
-        System.out.println("indi "+indi);
-        System.out.println("campos "+campos.size());
+        System.out.println("counter " + counter);
+        System.out.println("indi " + indi);
+        System.out.println("campos " + campos.size());
         //indi=indi;
         int res = 0;
         if (indi == 0) {
-            counter=1;
-        } 
+            counter = 1;
+        }
 //        System.out.println(res);
         int c = 0;
         for (int i = 0; i < elementos.size(); i++) {
             if (indi < elementos.size()) {
                 texto += elementos.get(indi) + "\n";
-                if (indi==0) {
-                    indi = indi + counter;                    
+                if (indi == 0) {
+                    indi = indi + counter;
                     indi = indi + campos.size() - 1;
-                }else{
+                } else {
                     indi = indi + campos.size();
                 }
                 System.out.println(indi);
@@ -1881,7 +1884,9 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             int key = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la llave a buscar"));
-            ArrayList busqueda2 = tree.busqueda(tree.raiz, key);
+            //ArrayList busqueda2 = tree.busqueda(tree.raiz, key);
+            int ii = 0;
+            ArrayList busqueda2 = tree.busqueda(ii, tree.raiz, key);
             System.out.println("indice " + busqueda2.get(1));
             System.out.println("llave " + busqueda2.get(0));
             if (key == (int) busqueda2.get(0)) {
@@ -2107,6 +2112,7 @@ public class Main extends javax.swing.JFrame {
 //                    System.out.println("y");
 //                    tree.insertar(Integer.parseInt((String) jt_introR.getValueAt(jt_introR.getSelectedRow(), 4)));
 //                }
+                jm_campos.setEnabled(false);
                 JOptionPane.showMessageDialog(this, "Registro agregado con exito");
                 for (int i = 0; i < size; i++) {
                     jt_introR.setValueAt("", i, 4);
@@ -2132,7 +2138,9 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             int key = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la llave a buscar"));
-            ArrayList busqueda2 = tree.busqueda(tree.raiz, key);
+//            ArrayList busqueda2 = tree.busqueda(tree.raiz, key);
+            int ii=0;
+            ArrayList busqueda2 = tree.busqueda(ii, tree.raiz, key);
             if (key == (int) busqueda2.get(0)) {
                 k = key;
                 DefaultTableModel modelo = new DefaultTableModel();
