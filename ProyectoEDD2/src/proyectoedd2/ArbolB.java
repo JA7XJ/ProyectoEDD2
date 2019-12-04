@@ -244,23 +244,40 @@ public class ArbolB implements Serializable{
     public void mergenodos(Nodo y, Nodo z) {
         //No funciona!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         Nodo x = new Nodo(orden);
-        x.padre = y.padre;
-        x.hoja = (y.hoja && z.hoja);
-        x.llaves.clear();
-        x.llaves.addAll(y.llaves);
-        y.llaves.clear();
-        x.llaves.addAll(y.nllaves, z.llaves);
-        z.llaves.clear();
-        while (x.llaves.size() > orden - 1) {
-            x.llaves.remove(orden - 1);
-        }
-        if (!x.hoja) {
-            for (int i = 0; i <= (int) Math.floor((orden - 1) / 2); i++) {
-                x.puntadores.set(i, y.puntadores.get(i));
-                x.puntadores.set(i + (int) Math.floor(orden / 2), x);
+        //x.padre = y.padre;
+        //x.hoja = (y.hoja && z.hoja);
+        //x.llaves.clear();
+        //x.llaves.addAll(y.llaves);
+        //y.llaves.clear();
+        //x.llaves.addAll(y.nllaves, z.llaves);
+        //z.llaves.clear();
+//        while (x.llaves.size() > orden - 1) {
+//            x.llaves.remove(orden - 1);
+//        }
+//        if (!x.hoja) {
+//            for (int i = 0; i <= (int) Math.floor((orden - 1) / 2); i++) {
+//                x.puntadores.set(i, y.puntadores.get(i));
+//                x.puntadores.set(i + (int) Math.floor(orden / 2), x);
+//            }
+//        }
+//        x.nllaves = y.nllaves + z.nllaves;
+
+        
+    }
+    
+    public void merge(Nodo actual, int llave){
+                
+        if (!actual.hoja) {
+            
+        }else{
+            //si es hoja
+            if (actual.nllaves > (orden-1)/2 ) { //si sus llaves son mayores al minimo
+                removerllave(llave, actual);
             }
+            
         }
-        x.nllaves = y.nllaves + z.nllaves;
+        
+        
     }
 
 }
