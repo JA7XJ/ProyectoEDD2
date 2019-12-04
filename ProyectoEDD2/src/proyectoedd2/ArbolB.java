@@ -284,15 +284,21 @@ public class ArbolB implements Serializable {
     }
     
     public void merge(Nodo actual, int llave){
-                
-        if (!actual.hoja) {
-            
-        }else{
-            //si es hoja
-            if (actual.nllaves > (orden-1)/2 ) { //si sus llaves son mayores al minimo
-                removerllave(llave, actual);
+        Nodo sucesor = null;
+        Nodo predecesor = null;
+        Nodo temporal = null;
+        if (actual.nllaves <= (orden-1)/2) { // si es menor o igual que el minimo
+            for (int i = 0; i < actual.nllaves; i++) {
+                temporal.llaves.add(actual.llaves.get(i));
             }
             
+            for (int i = 0; i < predecesor.nllaves; i++) {
+                temporal.llaves.add(predecesor.llaves.get(i));
+            }
+            
+            for (int i = 0; i < sucesor.nllaves; i++) {
+                temporal.llaves.add(sucesor.llaves.get(i));
+            }
         }
         
         
