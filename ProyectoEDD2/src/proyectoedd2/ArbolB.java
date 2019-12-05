@@ -55,7 +55,7 @@ public class ArbolB implements Serializable {
         int i = 0;
         while (i <= x.nllaves - 1 && llave > x.llaves.get(i)) {
             i++;
-            index=index+1;
+            index = index + 1;
         }
         if (i <= x.nllaves - 1 && llave == x.llaves.get(i)) {
             ArrayList xx = new ArrayList();
@@ -280,35 +280,36 @@ public class ArbolB implements Serializable {
 //        }
 //        x.nllaves = y.nllaves + z.nllaves;
 
-        
     }
-    
-    public void merge(Nodo actual, int llave){
+
+    public void merge(Nodo actual, int llave) {
         Nodo sucesor = null;//aun no se que putas asignar aca xd
         Nodo predecesor = null;//ni aca
         Nodo temporal = null;
-        if (actual.nllaves <= (orden-1)/2) { // si es menor o igual que el minimo
+
+        if (actual.nllaves <= (orden - 1) / 2) { // si es menor o igual que el minimo
+            actual.llaves.remove(llave);
+            
             for (int i = 0; i < actual.nllaves; i++) {
                 temporal.llaves.add(actual.llaves.get(i));
             }
-            
+
             for (int i = 0; i < predecesor.nllaves; i++) {
                 temporal.llaves.add(predecesor.llaves.get(i));
             }
-            
+
             for (int i = 0; i < sucesor.nllaves; i++) {
                 temporal.llaves.add(sucesor.llaves.get(i));
             }
-            
+
             Collections.sort(temporal.llaves);//ordena las llaves
-            
+
             actual = temporal;
             
             //predecesor.llaves.remove();
-            
+
         }
-        
-        
+
     }
 
 }
