@@ -284,8 +284,8 @@ public class ArbolB implements Serializable {
     }
     
     public void merge(Nodo actual, int llave){
-        Nodo sucesor = null;
-        Nodo predecesor = null;
+        Nodo sucesor = null;//aun no se que putas asignar aca xd
+        Nodo predecesor = null;//ni aca
         Nodo temporal = null;
         if (actual.nllaves <= (orden-1)/2) { // si es menor o igual que el minimo
             for (int i = 0; i < actual.nllaves; i++) {
@@ -299,6 +299,13 @@ public class ArbolB implements Serializable {
             for (int i = 0; i < sucesor.nllaves; i++) {
                 temporal.llaves.add(sucesor.llaves.get(i));
             }
+            
+            Collections.sort(temporal.llaves);//ordena las llaves
+            
+            actual = temporal;
+            
+            //predecesor.llaves.remove();
+            
         }
         
         
