@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class ArbolB implements Serializable {
-
+    private static final long serialVersionUID = -5874154469005930011L;
     Nodo raiz;
     int orden;
 

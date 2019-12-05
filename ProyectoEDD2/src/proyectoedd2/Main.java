@@ -98,6 +98,12 @@ public class Main extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         tablaBM1 = new javax.swing.JTable();
+        jd_cruzarAr = new javax.swing.JDialog();
+        jLabel19 = new javax.swing.JLabel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jt_camposC = new javax.swing.JTable();
+        jb_seleccionar = new javax.swing.JButton();
+        jb_cruzar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jb_nuevoAr = new javax.swing.JButton();
         jb_abrirAr = new javax.swing.JButton();
@@ -693,6 +699,58 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(25, Short.MAX_VALUE))
+        );
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel19.setText("Seleccione los campos a utilizar");
+
+        jt_camposC.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jt_camposC.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane8.setViewportView(jt_camposC);
+
+        jb_seleccionar.setText("Seleccionar");
+
+        jb_cruzar.setText("Cruzar");
+
+        javax.swing.GroupLayout jd_cruzarArLayout = new javax.swing.GroupLayout(jd_cruzarAr.getContentPane());
+        jd_cruzarAr.getContentPane().setLayout(jd_cruzarArLayout);
+        jd_cruzarArLayout.setHorizontalGroup(
+            jd_cruzarArLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_cruzarArLayout.createSequentialGroup()
+                .addGap(164, 164, 164)
+                .addComponent(jb_seleccionar)
+                .addGap(28, 28, 28)
+                .addComponent(jb_cruzar)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_cruzarArLayout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addGroup(jd_cruzarArLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_cruzarArLayout.createSequentialGroup()
+                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_cruzarArLayout.createSequentialGroup()
+                        .addComponent(jLabel19)
+                        .addGap(73, 73, 73))))
+        );
+        jd_cruzarArLayout.setVerticalGroup(
+            jd_cruzarArLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_cruzarArLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jd_cruzarArLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jb_seleccionar)
+                    .addComponent(jb_cruzar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -2021,8 +2079,138 @@ public class Main extends javax.swing.JFrame {
 
     private void jmi_cruzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_cruzarActionPerformed
         // TODO add your handling code here:
+        try {
+            ArrayList<Campo> temporal = new ArrayList();
+            JFileChooser abrir = new JFileChooser();
+            FileFilter filtro = new FileNameExtensionFilter("Archivos de texto(.txt)", "txt");
+            abrir.setFileFilter(filtro);
+            int valor = abrir.showOpenDialog(abrir);
+            if (valor == JFileChooser.APPROVE_OPTION) {
+                rutaCruzar = abrir.getSelectedFile().getPath();
+            }
+            temporal = obtenerCampos();
+            DefaultTableModel modelo = new DefaultTableModel();
+            int size = campos.size();
+            int size2 = temporal.size() - 1;
+            int total = size + size2;
+            //for (int i = 0; i < size; i++) {
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Tipo");
+            modelo.addColumn("longitud");
+            modelo.addColumn("Llave primaria");
+            String[] c = new String[4];
+            int cc = 0;
+            for (int i = 0; i < size; i++) {
+                String tipo = "";
+                if (campos.get(i).getTipo() == 0) {
+                    tipo = "int";
+                }
+                if (campos.get(i).getTipo() == 1) {
+                    tipo = "String";
+                }
+                if (campos.get(i).getTipo() == 2) {
+                    tipo = "double";
+                }
+                if (campos.get(i).getTipo() == 3) {
+                    tipo = "char";
+                }
+                c[0] = campos.get(i).getNombreCampo();
+                c[1] = tipo;
+                c[2] = Integer.toString(campos.get(i).getLongitud());
+                if (campos.get(i).isLlave() == false) {
+                    c[3] = "No";
+                } else {
+                    c[3] = "Si";
+                }
+                modelo.addRow(c);
+            }
+            for (int i = 0; i < size2; i++) {
+                String tipo = "";
+                if (temporal.get(i).getTipo() == 0) {
+                    tipo = "int";
+                }
+                if (temporal.get(i).getTipo() == 1) {
+                    tipo = "String";
+                }
+                if (temporal.get(i).getTipo() == 2) {
+                    tipo = "double";
+                }
+                if (temporal.get(i).getTipo() == 3) {
+                    tipo = "char";
+                }
+                c[0] = temporal.get(i).getNombreCampo();
+                c[1] = tipo;
+                c[2] = Integer.toString(temporal.get(i).getLongitud());
+                if (temporal.get(i).isLlave() == false) {
+                    c[3] = "No";
+                } else {
+                    c[3] = "Si";
+                }
+                modelo.addRow(c);
+            }
+            jt_camposC.setModel(modelo);
+            jd_cruzarAr.setModal(true);
+            jd_cruzarAr.pack();
+            jd_cruzarAr.setLocationRelativeTo(this);
+            jd_cruzarAr.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jmi_cruzarActionPerformed
-
+    public ArrayList<Campo> obtenerCampos() throws IOException {
+        Scanner lea = null;
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+        ArrayList<Campo> other = new ArrayList();
+        //Scanner lea2 = null;
+        try {
+//            File archivo = new File(ruta);
+            archivo = new File(rutaCruzar); //cualquier ruta
+            fr = new FileReader(archivo); //apunta al archivo
+            br = new BufferedReader(fr); //apunta al canalF
+            lea = new Scanner(archivo);
+            String nombrec = "";
+            int tipo, longitud;
+            boolean llave = false;
+            lea.useDelimiter("|");
+            String texto = "", texto2 = "";
+            int c = 0;
+            while ((texto = br.readLine()) != null) {  //leer archivo de texto            
+                if (c == 0) {
+                    texto2 += texto;
+                }
+                c++;
+            }
+            StringTokenizer tokens = new StringTokenizer(texto2, "|");
+            while (tokens.hasMoreTokens()) {
+                String texto3 = tokens.nextToken();
+                StringTokenizer tokens2 = new StringTokenizer(texto3, ",");
+                //int c = 0, c2 = 0;
+                while (tokens2.hasMoreTokens()) {
+//                        System.out.println(tokens2.nextToken());
+//                        System.out.println(c);
+//                        c=c+1;
+                    nombrec = tokens2.nextToken();
+                    tipo = Integer.parseInt(tokens2.nextToken());
+                    longitud = Integer.parseInt(tokens2.nextToken());
+                    if ("true".equals(tokens2.nextToken())) {
+                        llave = true;
+                    } else {
+                        llave = false;
+                    }
+                    other.add(new Campo(nombrec, tipo, longitud, llave));
+                }
+            }
+            JOptionPane.showMessageDialog(this, "Archivo cargado con exito");
+            //System.out.println(texto);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error, archivo de texto no compatible");
+        }
+        br.close();
+        fr.close();
+        return other;
+    }
     private void adelanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adelanteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_adelanteActionPerformed
@@ -2140,7 +2328,7 @@ public class Main extends javax.swing.JFrame {
         try {
             int key = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la llave a buscar"));
 //            ArrayList busqueda2 = tree.busqueda(tree.raiz, key);
-            int ii=0;
+            int ii = 0;
             ArrayList busqueda2 = tree.busqueda(ii, tree.raiz, key);
             if (key == (int) busqueda2.get(0)) {
                 k = key;
@@ -2372,6 +2560,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -2391,14 +2580,18 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JButton jb_abrirAr;
     private javax.swing.JButton jb_borrarC;
+    private javax.swing.JButton jb_cruzar;
     private javax.swing.JButton jb_introD;
     private javax.swing.JButton jb_introR;
     private javax.swing.JButton jb_nuevoAr;
+    private javax.swing.JButton jb_seleccionar;
     private javax.swing.JDialog jd_borrarC;
     private javax.swing.JDialog jd_buscarR;
     private javax.swing.JDialog jd_crearC;
+    private javax.swing.JDialog jd_cruzarAr;
     private javax.swing.JDialog jd_insertarR;
     private javax.swing.JDialog jd_listarRegistros;
     private javax.swing.JDialog jd_listarc;
@@ -2429,6 +2622,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmi_reIndexarA;
     private javax.swing.JTable jt_borrarC;
     private javax.swing.JTable jt_campos;
+    private javax.swing.JTable jt_camposC;
     private javax.swing.JTable jt_introR;
     private javax.swing.JTable jt_listaR;
     private javax.swing.JTable jt_modificarC;
@@ -2453,7 +2647,7 @@ public class Main extends javax.swing.JFrame {
     //Nodo raiz;
     int in, k;
     String rutaAbierto;
-    String ruta2, ruta3;
+    String ruta2, ruta3, rutaCruzar;
     ArrayList indices = new ArrayList();
     ArbolB tree;
 }
