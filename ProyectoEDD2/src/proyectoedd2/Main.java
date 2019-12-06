@@ -2295,6 +2295,7 @@ public class Main extends javax.swing.JFrame {
                     if (jt_introR.getValueAt(i, 3) == "Si") {
                         System.out.println("y");
                         tree.insertar(Integer.parseInt((String) jt_introR.getValueAt(i, 4)));
+                        guardar();
                     }
                 }
 //                if (jt_introR.getValueAt(jt_introR.getSelectedRow(), 3) == "Si") {
@@ -2322,7 +2323,57 @@ public class Main extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_jb_introRMouseClicked
+    void guardar() throws IOException{
+        String texto = "";
+            File archivo = null;
+            FileWriter escribir = null;
+            if (Abrir) {
+                archivo = new File(rutaAbierto);
+                escribir = new FileWriter(archivo);
+            } else {
+                archivo = new File(rutaAbierto + ".txt");
+                escribir = new FileWriter(archivo);
+            }
+//            archivo = new File(rutaAbierto);
+//            escribir = new FileWriter(archivo);
+            texto += "|";
+            for (int i = 0; i < campos.size(); i++) {
+                //texto+=campos.get(i).toString();
+                texto += campos.get(i).getNombreCampo() + "," + campos.get(i).getTipo() + "," + campos.get(i).getLongitud() + "," + campos.get(i).isLlave() + "|";
+            }
+            texto += "\n|";
+            int cc = 0;
+            for (int i = 0; i < elementos.size(); i++) {
+                if (cc < campos.size()) {
+                    texto += elementos.get(i) + "|";
+                }
+                cc++;
+                if (cc == campos.size()) {
+                    texto += "\n";
+                    cc = 0;
+                    if (i == elementos.size() - 1) {
 
+                    } else {
+                        texto += "|";
+                    }
+                    //System.out.println("y");
+                }
+            }
+            //texto = campos.toString();
+//            rb_yes.setEnabled(true);
+//            rb_no.setEnabled(true);
+            System.out.println(rutaAbierto);
+            System.out.println(ruta2);
+            System.out.println(ruta3);
+            if (elementos.isEmpty()) {
+
+            } else {
+                escribirArbol();
+            }
+
+            escribir.append(texto);
+            escribir.close();
+    }
     private void op1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_op1MouseClicked
         // TODO add your handling code here:
         try {
@@ -2495,6 +2546,7 @@ public class Main extends javax.swing.JFrame {
 //                for (int i = 0; i < tablaBM.getRowCount(); i++) {
 //                    tablaBM.setValueAt("", 0, i);
 //                }
+                guardar();
                 jd_op1.setVisible(false);
             }
         } catch (Exception e) {
