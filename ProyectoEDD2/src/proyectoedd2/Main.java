@@ -2527,10 +2527,18 @@ public class Main extends javax.swing.JFrame {
         if (nodo == null) {
             return;
         }
-        System.out.println(new String(c) + nodo.llaves.toString());
+        System.out.print(new String(c) + "[");
+        for (int i = 0; i < nodo.n; i++) {
+            if (i == 0) {
+                System.out.print(nodo.llaves[i]);
+            }else{
+                System.out.print(", " + nodo.llaves[i]);
+            }
+        }
+        System.out.println("]");
         iAltura++;
-        for (int i = 0; i < nodo.puntadores.size(); i++) {
-            imprimir(nodo.puntadores.get(i), iAltura);
+        for (int i = 0; i < nodo.orden; i++) {
+            imprimir(nodo.puntadores[i], iAltura);
         }
     }
 
