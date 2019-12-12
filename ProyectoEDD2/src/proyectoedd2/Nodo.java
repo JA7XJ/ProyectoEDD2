@@ -1,10 +1,12 @@
 package proyectoedd2;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Nodo implements Serializable {
 
-  int[] llaves;
+    private static final long serialVersionUID = -8341795847757503659L;
+    int[] llaves;
     int orden;
     Nodo[] puntadores;
     int n;
@@ -17,7 +19,7 @@ public class Nodo implements Serializable {
         puntadores = new Nodo[orden];
         n = 0;
     }
-    
+
     public void recorrer() {
         int i;
         for (i = 0; i < n; i++) {
@@ -31,13 +33,29 @@ public class Nodo implements Serializable {
         }
     }
 
-    public Nodo busqueda(int llave) {
+//    public Nodo busqueda(int llave) {
+//        int i = 0;
+//        while (i < n && llave > llaves[i]) {
+//            i++;
+//        }
+//        if (llaves[i] == llave) {
+//            return this;
+//        }
+//        if (hoja) {
+//            return null;
+//        }
+//        return puntadores[i].busqueda(llave);
+//    }
+    public ArrayList busqueda(int llave) {
         int i = 0;
         while (i < n && llave > llaves[i]) {
             i++;
         }
         if (llaves[i] == llave) {
-            return this;
+            ArrayList x = new ArrayList();
+            x.add(llave);
+            x.add(i);
+            return x;
         }
         if (hoja) {
             return null;
@@ -68,7 +86,7 @@ public class Nodo implements Serializable {
                 i--;
             }
             if (puntadores[i].n == orden - 1) {
-                split(i , puntadores[i]);
+                split(i, puntadores[i]);
                 if (llave > llaves[i - 1]) {
                     i++;
                 }
@@ -76,7 +94,7 @@ public class Nodo implements Serializable {
             puntadores[i].insertarnofull(llave);
         }
     }
-    
+
     public void split(int i, Nodo y) {
         Nodo z = new Nodo(orden, y.hoja);
         z.n = (int) Math.floor((orden - 1) / 2);
@@ -104,7 +122,7 @@ public class Nodo implements Serializable {
         y.llaves[(int) Math.floor((orden - 1) / 2)] = 0;
         n++;
     }
-    
+
     public void remover(int llave) {
         int index = encontrarllave(llave);
         if (index < n && llaves[index] == llave) {
@@ -179,7 +197,7 @@ public class Nodo implements Serializable {
             if (index != n) {
                 merge(index);
             } else {
-                merge(index-1);
+                merge(index - 1);
             }
         }
     }

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class ArbolB implements Serializable {
+
     private static final long serialVersionUID = -5874154469005930011L;
     Nodo raiz;
     int orden;
@@ -26,7 +27,13 @@ public class ArbolB implements Serializable {
         }
     }
 
-    public Nodo busqueda(int llave) {
+//    public Nodo busqueda(int llave) {
+//        if (raiz != null) {
+//            return raiz.busqueda(llave);
+//        }
+//        return null;
+//    }
+    public ArrayList busqueda(int llave) {
         if (raiz != null) {
             return raiz.busqueda(llave);
         }
@@ -69,4 +76,5 @@ public class ArbolB implements Serializable {
             }
         }
     }
+
 }
