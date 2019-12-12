@@ -1979,7 +1979,9 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jmi_modificarRActionPerformed
 
     private void jmi_exportarXMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_exportarXMLActionPerformed
-        // TODO add your handling code here:
+        // exportar XML
+        
+        
     }//GEN-LAST:event_jmi_exportarXMLActionPerformed
 
     private void jmi_exportarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_exportarEActionPerformed
