@@ -87,7 +87,7 @@ public class Nodo implements Serializable {
             }
             if (puntadores[i].n == orden - 1) {
                 split(i, puntadores[i]);
-                if (llave > llaves[i - 1]) {
+                if (llave > llaves[i + 1]) {
                     i++;
                 }
             }
@@ -109,9 +109,8 @@ public class Nodo implements Serializable {
             }
         }
         y.n = (int) Math.floor((orden - 1) / 2);
-        for (int j = n + 1; j > i + 1; j--) {
-            puntadores[j + 1] = y.puntadores[j];
-            y.puntadores[j] = null;
+        for (int j = n; j >= i + 1; j--) {
+            puntadores[j + 1] = puntadores[j];
         }
         puntadores[i + 1] = z;
         for (int j = n - 1; j >= i; j--) {
